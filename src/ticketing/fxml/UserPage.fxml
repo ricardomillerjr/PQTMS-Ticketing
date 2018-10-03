@@ -62,12 +62,7 @@
 								<Font size="15.0" />
 							</font>
 						</Label>
-						<Label layoutX="1425.0" layoutY="67.0" prefHeight="19.0" prefWidth="106.0" text="Inquiry Lane" textFill="WHITE">
-							<font>
-								<Font size="15.0" />
-							</font>
-						</Label>
-						<Button fx:id="call_supervisor" alignment="BOTTOM_RIGHT" focusTraversable="false" layoutX="1061.0" layoutY="325.0" mnemonicParsing="false" onAction="#OnClckCallSuperVisor" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Call Supervisor" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1061.0">
+						<Button fx:id="call_supervisor" alignment="BOTTOM_RIGHT" focusTraversable="false" layoutX="1058.0" layoutY="325.0" mnemonicParsing="false" onAction="#OnClckCallSuperVisor" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Call Supervisor" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1058.0">
 							<font>
 								<Font name="System Bold" size="15.0" />
 							</font>
@@ -122,14 +117,10 @@
       								</FontAwesomeIconView>
       							</children>
       						</AnchorPane>
-                  <TableView fx:id="table" layoutX="1423.0" layoutY="103.0" prefHeight="446.0" prefWidth="462.0" stylesheets="@../css/summary_table.css">
+                  <TableView fx:id="table" layoutX="1432.0" layoutY="90.0" prefHeight="240.0" prefWidth="136.0">
                     <columns>
                       <TableColumn fx:id="ticketno" prefWidth="83.0" text="Ticket Count" />
-                      <TableColumn fx:id="type" prefWidth="67.0" text="Type" />
-                        <TableColumn fx:id="uid" prefWidth="75.0" text="USER ID" />
-                        <TableColumn fx:id="fname" prefWidth="75.0" text="First Name" />
-                        <TableColumn fx:id="mname" prefWidth="75.0" text="Middle Name" />
-                        <TableColumn fx:id="lname" prefWidth="75.0" text="Last Name" />
+                      <TableColumn fx:id="type" prefWidth="50.0" text="Type" />
                     </columns>
                   </TableView>
 					</children>

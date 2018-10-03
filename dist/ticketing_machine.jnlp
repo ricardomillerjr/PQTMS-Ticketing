@@ -27,7 +27,7 @@
         <jar href="lib\mysql-connector-java-5.1.40-bin.jar" size="990927" download="eager"/>
         <jar href="lib\rs2xml.jar" size="171578" download="eager"/>
         <jar href="lib\xercesImpl-2.11.0.jar" size="1367760" download="eager"/>
-        <jar href="ticketing_machine.jar" size="3701966" download="eager"/>
+        <jar href="ticketing_machine.jar" size="3701497" download="eager"/>
     </resources>
     <jfx:javafx-desc width="800" height="600" main-class="ticketing.main_app" name="main_app"/>
 </jnlp>

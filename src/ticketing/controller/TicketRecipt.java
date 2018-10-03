@@ -98,6 +98,7 @@ public class TicketRecipt implements Initializable {
             AnchorPane pane = loader.load();
             UserPageController userpage = loader.getController();
             userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
+            userpage.table.refresh();
             main_root_anchorPane.getChildren().setAll(pane);
         } else {
             Notification.Notifier.INSTANCE.notifyError("Error", "Something Went Wrong");
@@ -120,7 +121,7 @@ public class TicketRecipt implements Initializable {
             String LastName,
             String LHIOName,
             String SOAddress) {
-        
+
         puser = new pacd_user();
         parameters.put("queue_number", TokenNumber);
         parameters.put("lane_descrip", Lane_Desciption);
@@ -128,7 +129,7 @@ public class TicketRecipt implements Initializable {
         parameters.put("dateNow", DateNow);
         parameters.put("puserid", USERID);
         disableWarning();
-        
+
         puser.setUserid(USERID);
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middelename);
