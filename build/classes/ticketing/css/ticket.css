@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Aug 2018, 10:29:40 PM
+    Author     : itmu03
+*/
+#red_button {
+    -fx-background-color:  #0B9702;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight:bold;
+}
+#red_button:hover{
+    -fx-background-radius: 0;
+    -fx-background-color: #B7CC78;
+    -fx-text-fill: black;
+    -fx-font-weight:bold;
+}
+#red_button:pressed{
+    -fx-background-radius: 0;
+    -fx-background-color: #B7CC78;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="QueNum" language="groovy" pageWidth="204" pageHeight="566" columnWidth="178" leftMargin="19" rightMargin="7" topMargin="7" bottomMargin="16" isIgnorePagination="true" uuid="11b0103e-1c60-495a-a581-6a7167fe01c3">
+    <property name="ireport.zoom" value="3.221020000000027"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="498"/>
+    <parameter name="counterlane" class="java.lang.String">
+        <defaultValueExpression><![CDATA["ER2"]]></defaultValueExpression>
+    </parameter>
+    <queryString>
+		<![CDATA[SELECT CASE WHEN (u.fcnum + 1) >= u.max1 THEN u.min1 ELSE u.fcnum + 1 END maxnum, u.min1, u.max1, u.fttype, u.fcounter, u.fdescrip, u.flane, now() FROM ( SELECT CASE WHEN t.fcnum IS NULL THEN t.fcnumstart - 1 ELSE t.fcnum END fcnum, t.fcnumstart AS 'min1', t.fcnum2 AS 'max1', t.fttype, t.fcounter, t.fdescrip, t.flane FROM ( SELECT y.fcnum, x.fcnum2, x.fttype, x.fcounter, x.fdescrip, x.flane, x.fcnumstart FROM ( SELECT fcnum2, flane fttype, fcounter, fdescrip, flane, fcnum fcnumstart FROM ftable WHERE flane = $P{counterlane} ) x LEFT JOIN ( SELECT d.fcnum fcnum FROM ttable d WHERE d.fcnum >= ( SELECT fcnum FROM ftable WHERE flane = $P{counterlane} ) AND d.fcnum < ( SELECT fcnum2 FROM ftable WHERE flane = $P{counterlane}) AND d.findex = ( SELECT max(findex) FROM ttable e WHERE e.fcnum >= ( SELECT fcnum FROM ftable WHERE flane = $P{counterlane} ) AND e.fcnum < ( SELECT fcnum2 FROM ftable WHERE flane = $P{counterlane} ))) y ON x.flane = $P{counterlane} ) t ) u;]]>
+    </queryString>
+    <field name="maxnum" class="java.lang.String"/>
+    <field name="min1" class="java.lang.String"/>
+    <field name="max1" class="java.lang.String"/>
+    <field name="fttype" class="java.lang.String"/>
+    <field name="fcounter" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="fdescrip" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="flane" class="java.lang.String">
+        <fieldDescription><![CDATA[]]></fieldDescription>
+    </field>
+    <field name="now()" class="java.sql.Timestamp"/>
+    <background>
+        <band height="136">
+            <frame>
+                <reportElement x="14" y="0" width="164" height="92" uuid="bfcea7d9-3481-435c-a509-f701b6b60ae2"/>
+                <box>
+                    <topPen lineWidth="1.75"/>
+                    <bottomPen lineWidth="1.75"/>
+                </box>
+                <image>
+                    <reportElement x="28" y="0" width="117" height="41" uuid="e9dd8301-c42e-4cf3-a98f-79211bbae71d"/>
+                    <imageExpression><![CDATA["C:\\itmu\\queuenumber\\dist\\img\\phic.jpg"]]></imageExpression>
+                </image>
+            </frame>
+            <textField>
+                <reportElement x="16" y="92" width="162" height="10" uuid="bec75b64-af3a-40ad-bc7d-150bf73f3c14"/>
+                <textElement textAlignment="Center">
+                    <font size="6"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{now()}]]></textFieldExpression>
+            </textField>
+        </band>
+    </background>
+    <columnHeader>
+        <band height="47">
+            <staticText>
+                <reportElement x="15" y="32" width="165" height="15" uuid="5c5b26db-f89d-4081-aee1-d15ec08acd0f"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="false"/>
+                </textElement>
+                <text><![CDATA[Your Queue Number is]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="56">
+            <textField>
+                <reportElement x="16" y="29" width="164" height="14" uuid="58a56da7-7121-4c6c-a13c-363936110530"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{fdescrip}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="16" y="-12" width="162" height="45" uuid="4cf15a45-a1a3-42de-9696-0feaed21a7a9"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="32" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{maxnum}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

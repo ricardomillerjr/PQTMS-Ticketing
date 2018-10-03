@@ -1,0 +1,25 @@
+#labels
+{
+    -fx-background-color:#0B9702;
+    -fx-background-radius:10;
+    -fx-text-fill: white;
+    -fx-font-size: 18;
+}
+#labels:hover
+{
+    -fx-background-color: #004227;
+    -fx-text-fill:  white;
+}
+#labels:pressed
+{
+    -fx-background-color:green;
+    -fx-text-fill: white;
+}
+
+.text-input {
+    -fx-text-fill: white;
+    -fx-background-color: #0C91DA;
+    -fx-border-color: white;
+    -fx-cursor: text;
+}
+
