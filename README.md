@@ -15,11 +15,11 @@ Requirements Softwares Are the Following:
 
 <h2/>Sample Print Ticket<br>![Print Ticket](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG)<br>
 <br>
-<h2/>Login Page<br>![Login Page](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG)<br>
-<h2/>Main Page<br>![Main Page](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/mainpage.PNG)<br>
-<h2/>Payment Priority<br>![Payment Priority](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_priority.PNG)<br>
-<h2/>Payment Regular<br>![Payment Regular](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_regular.PNG)<br>
-<h2/>Other's Regular<br>![Other's Regular](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_regular.PNG)<br>
-<h2/>Other's Priority<br>![Other's Priority](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_priority.PNG)<br>
-<h2/>Bulk Transaction<br>![Bulk Transaction](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/bulk.PNG)<br>
-<h2/>Call Supervisor Page<br>![Call Supervisor Page](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/callsvr.PNG)<br>
+<h2/>Login Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
+<h2/>Main Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/mainpage.PNG"/><br>
+<h2/>Payment Priority<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_priority.PNG"/><br>
+<h2/>Payment Regular<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_regular.PNG"/><br>
+<h2/>Other's Regular<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_regular.PNG"/><br>
+<h2/>Other's Priority<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_priority.PNG"/><br>
+<h2/>Bulk Transaction<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/bulk.PNG"/><br>
+<h2/>Call Supervisor Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/callsvr.PNG"/><br>
