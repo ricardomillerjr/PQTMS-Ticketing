@@ -376,24 +376,3 @@ public class UserPageController implements Initializable {
     }
 
 }
-
-/*
-   String SQl = "insert into ttable(fcnum,fttype,fpdate,flogg,uid) values(?,?,now(),now(),?)";
-                PreparedStatement preparedStatement = _connection.prepareStatement(SQl);
-                preparedStatement.setString(1, bean.getCounter());
-                preparedStatement.setString(2, bean.getType());
-                preparedStatement.setString(3, "0");
-                if (preparedStatement.executeUpdate() == 1) {
-//                    Image img = new Image("/ticketing/img/Add-ticket-icon.png");
-//                    Notifications notificationBuilder = Notifications.create()
-//                            .title("Ticket Number: " + bean.getCounter())
-//                            .text(lane_name)
-//                            .graphic(new ImageView(img))
-//                            .hideAfter(Duration.seconds(7.0))
-//                            .position(Pos.BOTTOM_RIGHT)
-//                            .hideCloseButton();
-//                    notificationBuilder.show();
- */
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
