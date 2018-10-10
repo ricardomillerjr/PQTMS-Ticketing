@@ -14,14 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="main_root" prefHeight="540.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.LoginController">
+<AnchorPane id="AnchorPane" fx:id="main_root" prefHeight="540.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.LoginController">
     <children>
         <StackPane layoutX="2.0" prefHeight="557.0" prefWidth="475.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <VBox alignment="TOP_CENTER" prefHeight="780.0" prefWidth="475.0">
                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #439131;" /> 
-                        <Pane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: whitesmoke;" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: darkgreen;" /> 
+                        <Pane prefHeight="351.0" prefWidth="800.0" style="-fx-background-color: #2E2A33;" />
                     </children>
                 </VBox>
                 <AnchorPane id="button_log" prefHeight="656.0" prefWidth="475.0" style="-fx-border-color: black;" stylesheets="@../css/login.css">
@@ -60,14 +60,14 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                                 </JFXButton>
-                              <VBox layoutX="20.0" layoutY="41.0" prefHeight="64.0" prefWidth="303.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: #439131;">
+                              <VBox layoutX="20.0" layoutY="41.0" prefHeight="64.0" prefWidth="303.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: green;">
                                   <children>
                                       <Label alignment="CENTER" prefHeight="35.0" prefWidth="320.0" text="Philhealth Ticketing Machine" textAlignment="CENTER" textFill="WHITE">
                                           <font>
                                               <Font name="System Bold" size="20.0" />
                                           </font>
                                       </Label>
-                                      <Label alignment="CENTER" prefHeight="32.0" prefWidth="318.0" text="Version 1.0_R2" textAlignment="CENTER" textFill="WHITE">
+                                      <Label alignment="CENTER" prefHeight="32.0" prefWidth="318.0" text="Version 2.0_D2" textAlignment="CENTER" textFill="WHITE">
                                           <font>
                                               <Font size="11.0" />
                                           </font>
@@ -80,8 +80,8 @@
                                         <Image url="@../img/logo2.png" />
                                     </image>
                                 </ImageView>
-                        <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#439131 0%, #439131 70%, #439131 85%);" layoutX="78.0" layoutY="173.0" size="52" />
-                        <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#439131 0%, #439131 70%, #439131 85%);" layoutX="78.0" layoutY="270.0" size="52" />
+                        <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="173.0" size="52" />
+                        <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="270.0" size="52" />
                             </children>
                         </AnchorPane>
                     </children>

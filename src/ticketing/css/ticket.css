@@ -9,19 +9,23 @@ and open the template in the editor.
 */
 #red_button {
     -fx-background-color:  #0B9702;
-    -fx-background-radius: 0;
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
+    -fx-border-color:white;
     -fx-text-fill: white;
     -fx-font-size: 20;
     -fx-font-weight:bold;
 }
 #red_button:hover{
-    -fx-background-radius: 0;
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
     -fx-background-color: #B7CC78;
     -fx-text-fill: black;
     -fx-font-weight:bold;
 }
 #red_button:pressed{
-    -fx-background-radius: 0;
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
     -fx-background-color: #B7CC78;
     -fx-text-fill: white;
     -fx-font-weight:bold;

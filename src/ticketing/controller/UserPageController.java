@@ -6,6 +6,11 @@
  */
 package ticketing.controller;
 
+import com.github.daytron.simpledialogfx.data.DialogResponse;
+import com.github.daytron.simpledialogfx.data.DialogStyle;
+import com.github.daytron.simpledialogfx.data.HeaderColorStyle;
+import com.github.daytron.simpledialogfx.dialog.Dialog;
+import com.github.daytron.simpledialogfx.dialog.DialogType;
 import java.awt.HeadlessException;
 
 import java.io.IOException;
@@ -52,12 +57,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import net.sf.jasperreports.engine.DefaultJasperReportsContext;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRPropertiesUtil;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
 import ticketing.ConnectionManager;
 import ticketing.CounterManager;
-import ticketing.Counterr;
-import ticketing.ModelTable;
-import ticketing.pacd_user;
+import ticketing.dao.Counterr;
+import ticketing.dao.ModelTable;
+import ticketing.dao.pacd_user;
 
 /**
  * FXML Controller class
@@ -69,7 +81,7 @@ public class UserPageController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    private static final Connection _connection = ConnectionManager.getInstance().getConnection();
+    private static final Connection connection = ConnectionManager.getInstance().getConnection();
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
     @FXML
@@ -100,22 +112,43 @@ public class UserPageController implements Initializable {
     private Button payment_priority;
     @FXML
     private FontAwesomeIconView homebtn_ico;
-    @FXML
     private Label lbladdress;
     @FXML
-    public TableView<ModelTable> table;
+    private TableView<ModelTable> table;
     @FXML
     private TableColumn<ModelTable, String> ticketno;
     @FXML
     private TableColumn<ModelTable, String> type;
-    @FXML
-
     ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
+    @FXML
+    private TableColumn<ModelTable, String> date_Now;
+    @FXML
+    private Label lblsoaddress;
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         return SimpleDateFormmatter.format(sqlDate);
+    }
+
+    public void validate_table(String userid) {
+        try {
+            oblist.clear();
+            CallableStatement callableStatement = connection.prepareCall("{call count_ticket(?)}",
+                    ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            callableStatement.setString(1, userid);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                oblist.add(new ModelTable(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ticketno.setCellValueFactory(new PropertyValueFactory<>("TicketNumber"));
+        type.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        date_Now.setCellValueFactory(new PropertyValueFactory<>("date"));
+        table.setItems(oblist);
     }
 
     @Override
@@ -127,7 +160,7 @@ public class UserPageController implements Initializable {
             ResultSet rs = statement.executeQuery("select so_name.so_name,so_name.so_address from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1));
-                lbladdress.setText(rs.getString(2));
+                lblsoaddress.setText(rs.getString(2));
                 puser.setLane(lhioname.getText());
             }
         } catch (SQLException ex) {
@@ -135,18 +168,34 @@ public class UserPageController implements Initializable {
         }
     }
 
-    protected void load_dd(String ftable, String puserid) {
+    protected void load_dd(String ftable, String puserid, String lane_name) throws JRException {
         try {
             Counterr bean = CounterManager.getNumber(ftable);
             if (bean == null) {
                 System.err.println("No Rows Found");
             } else {
                 try {
-                    PreparedStatement preparedStatement = _connection.prepareStatement("insert into ttable(fcnum,fttype,fpdate,flogg,uid) values(?,?,now(),now(),?)");
-                    preparedStatement.setString(1, bean.getCounter());
-                    preparedStatement.setString(2, bean.getType());
-                    preparedStatement.setString(3, puserid);
-                    if (preparedStatement.executeUpdate() == 1) {
+                    FastHashMap parameters = new FastHashMap();
+                    parameters.put("queue_number", bean.getCounter());
+                    parameters.put("lane_descrip", bean.getDescription());
+                    parameters.put("lhioname", lhioname.getText());
+                    parameters.put("dateNow", bean.getDate());
+                    parameters.put("puserid", puser.getUserid());
+
+                    DefaultJasperReportsContext context = DefaultJasperReportsContext.getInstance();
+                    JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.xpath.executer.factory",
+                            "net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
+                    @SuppressWarnings("unchecked")
+                    JasperPrint print = JasperFillManager.fillReport("report/ticketrcp4.jasper", parameters, new JREmptyDataSource());
+
+                    CallableStatement callableStatement = connection.prepareCall("{call create_ticket_no(?,?,?)}",
+                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+                            ResultSet.CONCUR_READ_ONLY);
+                    callableStatement.setString(1, bean.getCounter());
+                    callableStatement.setString(2, bean.getType());
+                    callableStatement.setString(3, puserid);
+
+                    if (callableStatement.executeUpdate() == 1) {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("/ticketing/fxml/ticket_recipt.fxml"));
                         AnchorPane pane = loader.load();
@@ -155,31 +204,37 @@ public class UserPageController implements Initializable {
                                 puser.getUserid(),
                                 bean.getCounter(),
                                 bean.getDate(),
-                                bean.getType(),
                                 bean.getDescription(),
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
                                 puser.getLastname(),
                                 lhioname.getText(),
-                                lbladdress.getText());
+                                lblsoaddress.getText(),
+                                print);
+                        
+                        System.out.println(puser.getUserid());
+                        System.out.println(bean.getCounter());
+                        System.out.println(bean.getDate());
+                        System.out.println(bean.getDescription());
+                        System.out.println(puser.getFirstname());
+                        System.out.println(puser.getMiddlename());
+                        System.out.println(puser.getLastname());
+                        System.out.println(lhioname.getText());
+                        System.out.println(lblsoaddress.getText());
                         root_pane.getChildren().setAll(pane);
                     }
-                } catch (SQLException ex) {
-                    System.err.println(ex.getMessage());
-                    Logger.getLogger(TicketRecipt.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException | HeadlessException ex) {
+                    System.err.println(ex.getLocalizedMessage());
                 }
-
             }
         } catch (SQLException | HeadlessException | IOException ex) {
             System.err.println(ex.getLocalizedMessage());
         }
-
     }
 
     protected String getCurrentTime() {
         SimpleDateFormat SimpleTimeFormatter = new SimpleDateFormat("hh:mm:ss a");
         Time sqlTime = new Time(new java.util.Date().getTime());
-
         return SimpleTimeFormatter.format(sqlTime);
     }
 
@@ -198,62 +253,67 @@ public class UserPageController implements Initializable {
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middalename);
         puser.setLastname(LastName);
-        lblpacduser.setText(FirstName + " " + Middalename + " " + LastName);
-        try {
-            CallableStatement callableStatement = _connection.prepareCall("{call summary_ticket(?)}",
-                    ResultSet.TYPE_SCROLL_INSENSITIVE,
-                    ResultSet.CONCUR_READ_ONLY);
-            callableStatement.setString(1, puser.getUserid());
-            ResultSet resultSet = callableStatement.executeQuery();
-            while (resultSet.next()) {
-                oblist.add(new ModelTable(resultSet.getString(1), resultSet.getString(2)));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        ticketno.setCellValueFactory(new PropertyValueFactory<>("TicketNumber"));
-        type.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        table.setItems(oblist);
-        table.refresh();
+        lblpacduser.setText(FirstName.toUpperCase() + " " + Middalename.toUpperCase() + " " + LastName.toUpperCase());
     }
 
     @FXML
-    private void OnClickOR(ActionEvent event) {
-        load_dd("ORR", puser.getUserid());
+    private void OnClickOR(ActionEvent event) throws JRException {
+        load_dd("ORR", puser.getUserid(), "OTHER'S REGULAR");
     }
 
     @FXML
-    private void OnClickOP(ActionEvent event) {
-        load_dd("OP", puser.getUserid());
+    private void OnClickOP(ActionEvent event) throws JRException {
+        load_dd("OP", puser.getUserid(), "OTHER'S PRIORITY");
     }
 
     @FXML
-    private void onClickPP(ActionEvent event) {
-        load_dd("PP", puser.getUserid());
+    private void onClickPP(ActionEvent event) throws JRException {
+        load_dd("PP", puser.getUserid(), "PAYMENT PRIORITY");
     }
 
     @FXML
-    private void onClickPR(ActionEvent event) {
-        load_dd("PR", puser.getUserid());
+    private void onClickPR(ActionEvent event) throws JRException {
+        load_dd("PR", puser.getUserid(), "PAYMENT REGULAR");
     }
 
     @FXML
-    private void OnClickBlk(ActionEvent event) {
-        load_dd("BULK", puser.getUserid());
+    private void OnClickBlk(ActionEvent event) throws JRException {
+        load_dd("BULK", puser.getUserid(), "BULK TRANSACTION");
     }
 
     @FXML
-    private void OnClckCallSuperVisor(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/ticketing/fxml/callspvr.fxml"));
-        AnchorPane pane = loader.load();
-        CallSuperVisor callspvr = loader.getController();
-        callspvr.setP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
-        System.out.println(puser.getUserid());
-        System.out.println(puser.getFirstname());
-        System.out.println(puser.getMiddlename());
-        System.out.println(puser.getLastname());
-        root_pane.getChildren().setAll(pane);
+    private void OnClckCallSuperVisor(ActionEvent event) throws IOException, SQLException {
+       String fullname = puser.getFirstname() + " " + puser.getMiddlename() + " " + puser.getLastname();
+		Dialog dialog = new Dialog(
+				DialogType.INPUT_TEXT,
+				DialogStyle.UNDECORATED,
+				"title",
+				"Issues And Concern in (PACD)\n " + fullname,
+				HeaderColorStyle.LINEAR_FADE_RIGHT_BLUEPURPLE,
+				"Type Here",
+				new SQLException().getNextException());
+
+		dialog.showAndWait();
+		if (dialog.getResponse() == DialogResponse.SEND) {
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into call_supervisor (frontliner,counter,number,lane,flag,remarKs,entry_date) values(?,?,?,?,?,?,NOW())");
+			preparedStatement.setString(1, fullname);
+			preparedStatement.setString(2, "PACD");
+			preparedStatement.setString(3, "0");
+			preparedStatement.setString(4, "PACD");
+			preparedStatement.setInt(5, 0);
+			preparedStatement.setString(6, dialog.getTextEntry());
+			if (preparedStatement.executeUpdate() == 1) {
+				Image img = new Image("/ticketing/img/like-flat-128x128.png");
+				Notifications notificationBuilder = Notifications.create();
+				notificationBuilder.title("Call Supervisor");
+				notificationBuilder.text("Submited");
+				notificationBuilder.graphic(new ImageView(img));
+				notificationBuilder.hideAfter(Duration.seconds(2.0));
+				notificationBuilder.position(Pos.BOTTOM_RIGHT);
+				notificationBuilder.hideCloseButton();
+				notificationBuilder.show();
+			}
+		}
     }
 
     @FXML

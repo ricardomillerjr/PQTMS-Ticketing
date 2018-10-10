@@ -9,26 +9,40 @@ and open the template in the editor.
 */
 
 #green_login{
-    -fx-background-color:#439131;
+    -fx-background-color:#0A9002;
     -fx-text-fill: white;
     -fx-font-weight:bold;
     -fx-font-size: 18;
 }
 #green_login:hover{
-    -fx-background-color: #f9f670;
+    -fx-background-color: #ACC9A5;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+#green_login:pressed{
+    -fx-background-color: #0A9002;
     -fx-border-color: black;
     -fx-border-radius:5;
     -fx-text-fill: black;
     -fx-font-size: 18;
 }
 #green_cancel{
-    -fx-background-color:#439131;
+    -fx-background-color:#0A9002;
     -fx-text-fill: white;
     -fx-font-weight:bold;
     -fx-font-size: 18;
 }
 #green_cancel:hover{
-    -fx-background-color: #f9f670;
+    -fx-background-color: #ACC9A5;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+#green_cancel:pressed{
+    -fx-background-color: #0A9002;
     -fx-border-color: black;
     -fx-border-radius:5;
     -fx-text-fill: black;

@@ -42,7 +42,7 @@ import org.controlsfx.control.Notifications;
 import com.jfoenix.controls.JFXTextArea;
 
 import ticketing.ConnectionManager;
-import ticketing.pacd_user;
+import ticketing.dao.pacd_user;
 
 /**
  *

@@ -54,13 +54,16 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import javafx.scene.input.MouseEvent;
 
 import ticketing.ConnectionManager;
 import ticketing.Notification;
-import ticketing.pacd_user;
+import ticketing.dao.pacd_user;
 
 public class LoginController implements Initializable {
 
+    private double xOffset = 0;
+    private double yOffset = 0;
     private final Connection connection = ConnectionManager.getInstance().getConnection();
     private String full_name = new String();
     private Notification.Notifier notifier;
@@ -158,23 +161,20 @@ public class LoginController implements Initializable {
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+                        home_page_parent.setOnMousePressed((MouseEvent mouseEvent) -> {
+                            xOffset = mouseEvent.getSceneX();
+                            yOffset = mouseEvent.getSceneY();
+                        });
+                        home_page_parent.setOnMouseDragged((MouseEvent mouseEvent) -> {
+                            app_stage.setX(mouseEvent.getScreenX() - xOffset);
+                            app_stage.setY(mouseEvent.getScreenY() - yOffset);
+                        });
+
                         app_stage.hide();    // optional
                         app_stage.setFullScreen(true);
                         app_stage.setScene(home_page_scene);
                         app_stage.show();
 
-//						
-//						app_stage.setFullScreen(true);
-//						app_stage.setScene(home_page_scene);
-////				    app_stage.initStyle(StageStyle.TRANSPARENT);    // set "firstPage" route
-//						app_stage.hide();
-////
-//						Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
-//						app_stage.setX((primScreenBounds.getWidth() - app_stage.getWidth()) / 2);
-//						app_stage.setY((primScreenBounds.getHeight() - app_stage.getHeight()) / 4);
-//						app_stage.show();
-//						System.out.println(primScreenBounds.getHeight());
-//						System.out.println(primScreenBounds.getWidth());
                         if (app_stage.isShowing()) {
                             Notifications notificationBuilder = Notifications.create()
                                     .title("(PACD) User:")
@@ -205,27 +205,18 @@ public class LoginController implements Initializable {
 
     public static String getMD5(String input) {
         String generatedPassword = null;
-
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
-
             md.update(input.getBytes());
-
             byte[] bytes = md.digest();
             StringBuilder sb = new StringBuilder();
-
             for (int i = 0; i < bytes.length; i++) {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
-
             generatedPassword = sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            e.addSuppressed(e);
         }
-
         return generatedPassword;
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
