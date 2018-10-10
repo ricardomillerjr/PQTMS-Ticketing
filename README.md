@@ -13,7 +13,7 @@ Requirements Softwares Are the Following:
 2. Install <b><a href=https://www.oracle.com/technetwork/java/javase/9-0-4-relnotes-4021191.html>Java 9.0.4(64-bit)</a></b>- it is old    but its recommend. Do not install Java 10 or Java 11 because JavaFX is being decoupled.
 3. Must have Termal Printer <b><a href=https://www.poscentral.com.au/epson-tm-t82ii-serial-usb-psu-black-thermal-receipt-printer.html>Epson TM-T82 II Thermal Receipt Printer</a></b>.<br><br>
 
-<h2/>Sample Print Ticket<br>![Print Ticket](https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG)<br>
+<h2/>Sample Print Ticket<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG"/><br>
 <br>
 <h2/>Login Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
 <h2/>Main Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/mainpage.PNG"/><br>
