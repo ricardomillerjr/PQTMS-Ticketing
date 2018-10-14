@@ -13,8 +13,8 @@ Requirements Softwares Are the Following:
 2. Install <a href=https://www.oracle.com/technetwork/java/javase/9-0-4-relnotes-4021191.html>Java 9.0.4(64-bit)</a></b>- it is old    but its recommend. Do not install Java 10 or Java 11 because JavaFX is being decoupled.
 3. Must have Termal Printer <b><a href=https://www.poscentral.com.au/epson-tm-t82ii-serial-usb-psu-black-thermal-receipt-printer.html>Epson TM-T82 II Thermal Receipt Printer</a></b>.
  4. WINS for Installation is to be follow.. still in progress will just update tracks here.<br>
-    just email it.pro1@philhealth.gov.ph<br><br>
-
+    just email it.pro1@philhealth.gov.ph<br>
+5. New Link for <b>Ticketing.Exe</b> its already bundled with <b>(JVM) Docker Container Technology For JavaFX</b> so no need to install JDK. Heres is the Link<a ref=https://mega.nz/#!j0YinATa!6td0M_JfkcdNdrhTS8fU-s4DsK5vZFKe-CSR3sW19sY>MEGA.NZ</a>
 <h2/>Sample Print Ticket<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG"/><br>
 <br>
 <h2/>Login Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
