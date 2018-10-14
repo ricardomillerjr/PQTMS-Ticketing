@@ -14,7 +14,7 @@ Requirements Softwares Are the Following:
 3. Must have Termal Printer <b><a href=https://www.poscentral.com.au/epson-tm-t82ii-serial-usb-psu-black-thermal-receipt-printer.html>Epson TM-T82 II Thermal Receipt Printer</a></b>.
  4. WINS for Installation is to be follow.. still in progress will just update tracks here.<br>
     just email it.pro1@philhealth.gov.ph<br>
-5. New Link for <b>Ticketing.Exe</b> its already bundled with <b>(JVM) Docker Container Technology For JavaFX</b> so no need to install JDK. Heres is the Link<a ref=https://mega.nz/#!j0YinATa!6td0M_JfkcdNdrhTS8fU-s4DsK5vZFKe-CSR3sW19sY>MEGA.NZ</a>
+5. New Link for <b>Ticketing.Exe</b> its already bundled with <b>(JVM) Docker Container Technology For JavaFX</b> so no need to install JDK. Heres is the .... <a href=https://mega.nz/#!j0YinATa!6td0M_JfkcdNdrhTS8fU-s4DsK5vZFKe-CSR3sW19sY>LinkMEGA.NZ</a></b><br>
 <h2/>Sample Print Ticket<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG"/><br>
 <br>
 <h2/>Login Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
