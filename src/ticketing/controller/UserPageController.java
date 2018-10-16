@@ -212,16 +212,6 @@ public class UserPageController implements Initializable {
                                 lhioname.getText(),
                                 lblsoaddress.getText(),
                                 print);
-                        
-                        System.out.println(puser.getUserid());
-                        System.out.println(bean.getCounter());
-                        System.out.println(bean.getDate());
-                        System.out.println(bean.getDescription());
-                        System.out.println(puser.getFirstname());
-                        System.out.println(puser.getMiddlename());
-                        System.out.println(puser.getLastname());
-                        System.out.println(lhioname.getText());
-                        System.out.println(lblsoaddress.getText());
                         root_pane.getChildren().setAll(pane);
                     }
                 } catch (SQLException | HeadlessException ex) {
