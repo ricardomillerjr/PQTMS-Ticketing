@@ -178,13 +178,10 @@ public class LoginController implements Initializable {
                         if (app_stage.isShowing()) {
                             Notifications notificationBuilder = Notifications.create()
                                     .title("(PACD) User:")
-                                    .text(puser.getUserid() + "\n" + full_name)
-                                    .graphic(
-                                            new ImageView(
-                                                    new Image(
-                                                            "ticketing/img/logo2.png")))
+                                    .text(puser.getUserid() + "\n" + full_name).darkStyle()
+                                    .graphic(new ImageView(new Image("ticketing/img/logo2.png")))
                                     .hideAfter(Duration.seconds(2.0))
-                                    .position(Pos.TOP_LEFT)
+                                    .position(Pos.CENTER)
                                     .hideCloseButton();
 
                             notificationBuilder.show();

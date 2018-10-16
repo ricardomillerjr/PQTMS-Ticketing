@@ -28,7 +28,7 @@ import static java.awt.print.Printable.PAGE_EXISTS;
 
 /**
  *
- * @author itmu03
+ * @author melrose27
  */
 public class CounterManager {
 
@@ -99,12 +99,12 @@ public class CounterManager {
         double middleHeight = 8.0;
         double headerHeight = 2.0;
         double footerHeight = 2.0;
-        double width = convert_CM_To_PPI(8);    
+        double width = convert_CM_To_PPI(8);    // printer know only point per inch.default value is 72ppi
         double height = convert_CM_To_PPI(headerHeight + middleHeight + footerHeight);
 
         paper.setSize(width, height);
-        paper.setImageableArea(0, 10, width, height - convert_CM_To_PPI(1));   
-        pf.setOrientation(PageFormat.PORTRAIT);  
+        paper.setImageableArea(0, 10, width, height - convert_CM_To_PPI(1));    // define boarder size    after that print area width is about 180 points
+        pf.setOrientation(PageFormat.PORTRAIT);    // select orientation portrait or landscape but for this time portrait
         pf.setPaper(paper);
 
         return pf;
@@ -123,15 +123,18 @@ public class CounterManager {
 
                 try {
 
+                    /* Draw Header */
                     int y = 20;
                     int yShift = 10;
                     int headerRectHeight = 15;
                     int headerRectHeighta = 40;
 
+                    ///////////////// Ticket info Get ///////////
                     String pn1a = bean.getCounter();
                     String pn2a = bean.getType();
                     String pn3a = bean.getDate();
 
+                    ///////////////// tICKET ///////////
                     g2d.setFont(new Font("Consolas", Font.PLAIN, 12));
                     g2d.drawString("PHILHEALTH REGIONAL OFFICE XI", 12, y);
                     y += headerRectHeight;
@@ -168,3 +171,4 @@ public class CounterManager {
 }
 
 
+//~ Formatted by Jindent --- http://www.jindent.com

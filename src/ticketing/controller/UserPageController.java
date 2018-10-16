@@ -147,7 +147,7 @@ public class UserPageController implements Initializable {
         }
         ticketno.setCellValueFactory(new PropertyValueFactory<>("TicketNumber"));
         type.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        date_Now.setCellValueFactory(new PropertyValueFactory<>("date"));
+        date_Now.setCellValueFactory(new PropertyValueFactory<>("datenow"));
         table.setItems(oblist);
     }
 
@@ -157,9 +157,9 @@ public class UserPageController implements Initializable {
         lbldate.setText(getDateNow());
         try {
             Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select so_name.so_name,so_name.so_address from so_name");
+            ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_address from so_name");
             if (rs.next()) {
-                lhioname.setText(rs.getString(1));
+                lhioname.setText(rs.getString(1).toUpperCase());
                 lblsoaddress.setText(rs.getString(2));
                 puser.setLane(lhioname.getText());
             }
@@ -176,6 +176,7 @@ public class UserPageController implements Initializable {
             } else {
                 try {
                     FastHashMap parameters = new FastHashMap();
+                    parameters.put("logo",getClass().getClassLoader().getResource("ticketing/img/logo.png"));
                     parameters.put("queue_number", bean.getCounter());
                     parameters.put("lane_descrip", bean.getDescription());
                     parameters.put("lhioname", lhioname.getText());
@@ -186,7 +187,7 @@ public class UserPageController implements Initializable {
                     JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.xpath.executer.factory",
                             "net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
                     @SuppressWarnings("unchecked")
-                    JasperPrint print = JasperFillManager.fillReport("report/ticketrcp4.jasper", parameters, new JREmptyDataSource());
+                    JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
 
                     CallableStatement callableStatement = connection.prepareCall("{call create_ticket_no(?,?,?)}",
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -254,6 +255,7 @@ public class UserPageController implements Initializable {
         puser.setMiddlename(Middalename);
         puser.setLastname(LastName);
         lblpacduser.setText(FirstName.toUpperCase() + " " + Middalename.toUpperCase() + " " + LastName.toUpperCase());
+        validate_table(userid);
     }
 
     @FXML
@@ -376,3 +378,24 @@ public class UserPageController implements Initializable {
     }
 
 }
+
+/*
+   String SQl = "insert into ttable(fcnum,fttype,fpdate,flogg,uid) values(?,?,now(),now(),?)";
+                PreparedStatement preparedStatement = _connection.prepareStatement(SQl);
+                preparedStatement.setString(1, bean.getCounter());
+                preparedStatement.setString(2, bean.getType());
+                preparedStatement.setString(3, "0");
+                if (preparedStatement.executeUpdate() == 1) {
+//                    Image img = new Image("/ticketing/img/Add-ticket-icon.png");
+//                    Notifications notificationBuilder = Notifications.create()
+//                            .title("Ticket Number: " + bean.getCounter())
+//                            .text(lane_name)
+//                            .graphic(new ImageView(img))
+//                            .hideAfter(Duration.seconds(7.0))
+//                            .position(Pos.BOTTOM_RIGHT)
+//                            .hideCloseButton();
+//                    notificationBuilder.show();
+ */
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

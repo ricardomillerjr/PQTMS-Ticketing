@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ticketrcp3" language="groovy" pageWidth="204" pageHeight="566" columnWidth="178" leftMargin="19" rightMargin="7" topMargin="7" bottomMargin="16" uuid="11b0103e-1c60-495a-a581-6a7167fe01c3">
+	<property name="ireport.zoom" value="4.715895382000052"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="153"/>
+	<parameter name="queue_number" class="java.lang.String"/>
+	<parameter name="puserid" class="java.lang.String"/>
+	<parameter name="lane_descrip" class="java.lang.String"/>
+	<parameter name="dateNow" class="java.lang.String"/>
+	<parameter name="lhioname" class="java.lang.String"/>
+	<parameter name="logo" class="java.net.URL" isForPrompting="false"/>
+	<background>
+		<band height="112">
+			<frame>
+				<reportElement x="0" y="0" width="178" height="92" forecolor="#333333" uuid="bfcea7d9-3481-435c-a509-f701b6b60ae2"/>
+				<box>
+					<topPen lineWidth="1.75"/>
+					<bottomPen lineWidth="1.75"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement x="0" y="92" width="176" height="19" uuid="f4d11331-0bcb-4a31-ba89-284cea22281a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[If your number was call and you're not around, this number will be VOID.]]></text>
+			</staticText>
+		</band>
+	</background>
+	<columnHeader>
+		<band height="29">
+			<textField pattern="h:mm:ss a" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="0" y="0" width="86" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="cece0557-a82f-4291-b11f-1b3ab82362e1"/>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateNow}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="0" y="10" width="86" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="bdf132b5-92ad-4a6c-8513-3bcb7c9d13b1"/>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="7" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lhioname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="21" width="86" height="8" forecolor="#000000" backcolor="#FFFFFF" uuid="870be742-84c8-48ca-bb37-e5f74624c158"/>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[7:30 AM - 5:00 PM (Mon - Fri)]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement x="86" y="2" width="90" height="27" uuid="c9fb912d-d2fd-4ede-b96b-5db0043e2f59"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="63">
+			<textField>
+				<reportElement x="0" y="51" width="176" height="11" uuid="58a56da7-7121-4c6c-a13c-363936110530"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lane_descrip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="178" height="57" uuid="4cf15a45-a1a3-42de-9696-0feaed21a7a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="45" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{queue_number}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm.ss a" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="129" y="51" width="21" height="10" forecolor="#000000" backcolor="#FFFFFF" uuid="162fdcdd-18b7-456a-89d0-d98e9ccd8adc"/>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="6" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{puserid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

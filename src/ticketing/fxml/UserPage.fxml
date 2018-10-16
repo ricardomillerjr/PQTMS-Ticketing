@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root_pane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #2E2A33;" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
+<AnchorPane fx:id="root_pane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #2E2A33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
 	<children>
 		<AnchorPane fx:id="root_anchorpane" layoutY="206.0" prefHeight="850.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 			<children>
@@ -144,17 +144,17 @@
 								<Font name="System Italic" size="13.0" />
 							</font>
 						</Label>
-						<Label alignment="CENTER" layoutX="33.0" layoutY="37.0" prefHeight="38.0" prefWidth="517.0" text="PHILHEALTH REGIONAL OFFICE XI" textAlignment="CENTER" textFill="#59cb52" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+						<Label fx:id="lhioname" alignment="CENTER" layoutY="49.0" prefHeight="38.0" prefWidth="517.0" textAlignment="CENTER" textFill="#59cb52" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
 							<font>
-								<Font name="System Bold" size="24.0" />
+								<Font name="System Bold" size="20.0" />
 							</font>
 						</Label>
-						<Label fx:id="lblsoaddress" alignment="CENTER" layoutX="33.0" layoutY="72.0" prefHeight="21.0" prefWidth="605.0" text="address" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+						<Label fx:id="lblsoaddress" alignment="CENTER" layoutX="715.0" layoutY="81.0" prefHeight="21.0" prefWidth="517.0" textAlignment="CENTER" textFill="WHITE">
 							<font>
 								<Font name="System Bold" size="15.0" />
 							</font>
 						</Label>
-						<ImageView fitHeight="89.0" fitWidth="83.0" layoutX="680.0" layoutY="2.0" pickOnBounds="true" AnchorPane.leftAnchor="680.0" AnchorPane.rightAnchor="1161.0">
+						<ImageView fitHeight="89.0" fitWidth="83.0" layoutX="632.0" layoutY="5.0" pickOnBounds="true" AnchorPane.leftAnchor="632.0" AnchorPane.rightAnchor="1209.0">
 							<image>
 								<Image url="@../img/logo2.png" />
 							</image>
@@ -162,11 +162,6 @@
 								<Glow level="0.11" />
 							</effect>
 						</ImageView>
-						<Label fx:id="lhioname" alignment="CENTER" layoutX="104.0" layoutY="93.0" prefHeight="21.0" prefWidth="399.0" text="lhio_name" textFill="#099be0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="0.0">
-							<font>
-								<Font name="System Bold" size="15.0" />
-							</font>
-						</Label>
 					</children>
 				</AnchorPane>
 			</children>

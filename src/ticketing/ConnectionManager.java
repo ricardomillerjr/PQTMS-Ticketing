@@ -8,7 +8,7 @@ package ticketing;
 
 /**
  *
- * @author itmu03
+ * @author melrose27
  */
 import ticketing.dao.DBType;
 import java.io.FileInputStream;
@@ -104,3 +104,5 @@ public class ConnectionManager {
     }
 }
 
+
+//~ Formatted by Jindent --- http://www.jindent.com

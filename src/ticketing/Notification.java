@@ -37,6 +37,12 @@ import javafx.stage.StageStyle;
 
 import javafx.util.Duration;
 
+/**
+ * Created by
+ * User: hansolo
+ * Date: 01.07.13
+ * Time: 07:10
+ */
 public class Notification {
     public static final Image INFO_ICON    = new Image(Notifier.class.getResourceAsStream("/ticketing/icons/info.png"));
     public static final Image WARNING_ICON =
@@ -52,6 +58,7 @@ public class Notification {
         this("", MESSAGE, IMAGE);
     }
 
+    // ******************** Constructors **************************************
     public Notification(final String TITLE, final String MESSAGE) {
         this(TITLE, MESSAGE, null);
     }
@@ -61,6 +68,8 @@ public class Notification {
         this.MESSAGE = MESSAGE;
         this.IMAGE   = IMAGE;
     }
+
+    // ******************** Inner Classes *************************************
     public enum Notifier {
         INSTANCE;
 
@@ -78,6 +87,7 @@ public class Notification {
         private Scene                 scene;
         private ObservableList<Popup> popups;
 
+        // ******************** Constructor ***************************************
         private Notifier() {
             init();
             initGraphics();
@@ -126,6 +136,14 @@ public class Notification {
                 return 0.0;
             }
         }
+
+        /**
+         * Makes sure that the given VALUE is within the range of MIN to MAX
+         * @param MIN
+         * @param MAX
+         * @param VALUE
+         * @return
+         */
         private double clamp(final double MIN, final double MAX, final double VALUE) {
             if (VALUE < MIN) {
                 return MIN;
@@ -138,6 +156,7 @@ public class Notification {
             return VALUE;
         }
 
+        // ******************** Initialization ************************************
         private void init() {
             popupLifetime = Duration.millis(1500);
             popups        = FXCollections.observableArrayList();
@@ -152,36 +171,64 @@ public class Notification {
             stage.setScene(scene);
         }
 
+        /**
+         * Show the given Notification on the screen
+         * @param NOTIFICATION
+         */
         public void notify(final Notification NOTIFICATION) {
             preOrder();
             showPopup(NOTIFICATION);
         }
 
- 
+        /**
+         * Show a Notification with the given parameters on the screen
+         * @param TITLE
+         * @param MESSAGE
+         * @param IMAGE
+         */
         public void notify(final String TITLE, final String MESSAGE, final Image IMAGE) {
             notify(new Notification(TITLE, MESSAGE, IMAGE));
         }
 
-  
+        /**
+         * Show a Notification with the given title and message and an Error icon
+         * @param TITLE
+         * @param MESSAGE
+         */
         public void notifyError(final String TITLE, final String MESSAGE) {
             notify(new Notification(TITLE, MESSAGE, Notification.ERROR_ICON));
         }
 
-    
+        /**
+         * Show a Notification with the given title and message and an Info icon
+         * @param TITLE
+         * @param MESSAGE
+         */
         public void notifyInfo(final String TITLE, final String MESSAGE) {
             notify(new Notification(TITLE, MESSAGE, Notification.INFO_ICON));
         }
 
-     
+        /**
+         * Show a Notification with the given title and message and a Checkmark icon
+         * @param TITLE
+         * @param MESSAGE
+         */
         public void notifySuccess(final String TITLE, final String MESSAGE) {
             notify(new Notification(TITLE, MESSAGE, Notification.SUCCESS_ICON));
         }
 
-    
+        /**
+         * Show a Notification with the given title and message and a Warning icon
+         * @param TITLE
+         * @param MESSAGE
+         */
         public void notifyWarning(final String TITLE, final String MESSAGE) {
             notify(new Notification(TITLE, MESSAGE, Notification.WARNING_ICON));
         }
 
+        /**
+         * Reorder the popup Notifications on screen so that the latest Notification will stay on top
+         */
         private void preOrder() {
             if (popups.isEmpty()) {
                 return;
@@ -202,6 +249,10 @@ public class Notification {
             }
         }
 
+        /**
+         * Creates and shows a popup with the data from the given Notification object
+         * @param NOTIFICATION
+         */
         private void showPopup(final Notification NOTIFICATION) {
             Label title = new Label(NOTIFICATION.TITLE);
 
@@ -235,6 +286,7 @@ public class Notification {
             POPUP.getContent().add(popupContent);
             popups.add(POPUP);
 
+            // Add a timeline for popup fade out
             KeyValue fadeOutBegin = new KeyValue(POPUP.opacityProperty(), 1.0);
             KeyValue fadeOutEnd   = new KeyValue(POPUP.opacityProperty(), 0.0);
             KeyFrame kfBegin      = new KeyFrame(Duration.ZERO, fadeOutBegin);
@@ -247,7 +299,8 @@ public class Notification {
                     popups.remove(POPUP);
                 }));
 
-    
+            // Move popup to the right during fade out
+            // POPUP.opacityProperty().addListener((observableValue, oldOpacity, opacity) -> popup.setX(popup.getX() + (1.0 - opacity.doubleValue()) * popup.getWidth()) );
             if (stage.isShowing()) {
                 stage.toFront();
             } else {
@@ -263,30 +316,65 @@ public class Notification {
             stage.close();
         }
 
+        /**
+         * @param HEIGHT  The default is 80 px.
+         */
         public static void setHeight(final double HEIGHT) {
             Notifier.height = HEIGHT;
         }
 
+        /**
+         * Sets the Notification's owner stage so that when the owner
+         * stage is closed Notifications will be shut down as well.<br>
+         * This is only needed if <code>setPopupLocation</code> is called
+         * <u>without</u> a stage reference.
+         * @param OWNER
+         */
         public static void setNotificationOwner(final Stage OWNER) {
             INSTANCE.stage.initOwner(OWNER);
         }
 
+        /**
+         * @param OFFSET_X  The horizontal shift required.
+         * <br> The default is 0 px.
+         */
         public static void setOffsetX(final double OFFSET_X) {
             Notifier.offsetX = OFFSET_X;
         }
 
+        /**
+         * @param OFFSET_Y  The vertical shift required.
+         * <br> The default is 25 px.
+         */
         public static void setOffsetY(final double OFFSET_Y) {
             Notifier.offsetY = OFFSET_Y;
         }
 
+        /**
+         * Returns the Duration that the notification will stay on screen before it
+         * will fade out.
+         * @return the Duration the popup notification will stay on screen
+         */
         public Duration getPopupLifetime() {
             return popupLifetime;
         }
 
+        /**
+         * Defines the Duration that the popup notification will stay on screen before it
+         * will fade out. The parameter is limited to values between 2 and 20 seconds.
+         * @param POPUP_LIFETIME
+         */
         public void setPopupLifetime(final Duration POPUP_LIFETIME) {
             popupLifetime = Duration.millis(clamp(2000, 20000, POPUP_LIFETIME.toMillis()));
         }
 
+        // ******************** Methods *******************************************
+
+        /**
+         * @param STAGE_REF  The Notification will be positioned relative to the given Stage.<br>
+         *                                      If null then the Notification will be positioned relative to the primary Screen.
+         * @param POPUP_LOCATION  The default is TOP_RIGHT of primary Screen.
+         */
         public static void setPopupLocation(final Stage STAGE_REF, final Pos POPUP_LOCATION) {
             if (null != STAGE_REF) {
                 INSTANCE.stage.initOwner(STAGE_REF);
@@ -296,10 +384,17 @@ public class Notification {
             Notifier.popupLocation = POPUP_LOCATION;
         }
 
+        /**
+         * @param SPACING_Y  The spacing between multiple Notifications.
+         * <br> The default is 5 px.
+         */
         public static void setSpacingY(final double SPACING_Y) {
             Notifier.spacingY = SPACING_Y;
         }
 
+        /**
+         * @param WIDTH  The default is 300 px.
+         */
         public static void setWidth(final double WIDTH) {
             Notifier.width = WIDTH;
         }
