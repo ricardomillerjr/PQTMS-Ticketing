@@ -176,7 +176,7 @@ public class UserPageController implements Initializable {
             } else {
                 try {
                     FastHashMap parameters = new FastHashMap();
-                    parameters.put("logo",getClass().getClassLoader().getResource("ticketing/img/logo.png"));
+                    parameters.put("logo", getClass().getClassLoader().getResource("ticketing/img/logo.png"));
                     parameters.put("queue_number", bean.getCounter());
                     parameters.put("lane_descrip", bean.getDescription());
                     parameters.put("lhioname", lhioname.getText());
@@ -275,37 +275,38 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void OnClckCallSuperVisor(ActionEvent event) throws IOException, SQLException {
-       String fullname = puser.getFirstname() + " " + puser.getMiddlename() + " " + puser.getLastname();
-		Dialog dialog = new Dialog(
-				DialogType.INPUT_TEXT,
-				DialogStyle.UNDECORATED,
-				"title",
-				"Issues And Concern in (PACD)\n " + fullname,
-				HeaderColorStyle.LINEAR_FADE_RIGHT_BLUEPURPLE,
-				"Type Here",
-				new SQLException().getNextException());
+        String fullname = puser.getFirstname() + " " + puser.getMiddlename() + " " + puser.getLastname();
+        Dialog dialog = new Dialog(
+                DialogType.INPUT_TEXT,
+                DialogStyle.UNDECORATED,
+                "title",
+                "Issues And Concern in (PACD)\n " + fullname,
+                HeaderColorStyle.GLOSS_MALACHITE,
+                "Type Here",
+                new SQLException().getNextException());
 
-		dialog.showAndWait();
-		if (dialog.getResponse() == DialogResponse.SEND) {
-			PreparedStatement preparedStatement = connection.prepareStatement("insert into call_supervisor (frontliner,counter,number,lane,flag,remarKs,entry_date) values(?,?,?,?,?,?,NOW())");
-			preparedStatement.setString(1, fullname);
-			preparedStatement.setString(2, "PACD");
-			preparedStatement.setString(3, "0");
-			preparedStatement.setString(4, "PACD");
-			preparedStatement.setInt(5, 0);
-			preparedStatement.setString(6, dialog.getTextEntry());
-			if (preparedStatement.executeUpdate() == 1) {
-				Image img = new Image("/ticketing/img/like-flat-128x128.png");
-				Notifications notificationBuilder = Notifications.create();
-				notificationBuilder.title("Call Supervisor");
-				notificationBuilder.text("Submited");
-				notificationBuilder.graphic(new ImageView(img));
-				notificationBuilder.hideAfter(Duration.seconds(2.0));
-				notificationBuilder.position(Pos.BOTTOM_RIGHT);
-				notificationBuilder.hideCloseButton();
-				notificationBuilder.show();
-			}
-		}
+        dialog.showAndWait();
+        if (dialog.getResponse() == DialogResponse.SEND) {
+            CallableStatement callableStatement = connection.prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
+                    ResultSet.CONCUR_READ_ONLY);
+            callableStatement.setString(1, fullname);
+            callableStatement.setString(2, "PACD");
+            callableStatement.setString(3, "0");
+            callableStatement.setString(4, "PACD");
+            callableStatement.setInt(5, 0);
+            callableStatement.setString(6, dialog.getTextEntry());
+            if (callableStatement.executeUpdate() == 1) {
+                Image img = new Image("/ticketing/img/like-flat-128x128.png");
+                Notifications notificationBuilder = Notifications.create();
+                notificationBuilder.title("Call Supervisor");
+                notificationBuilder.text("Submited");
+                notificationBuilder.graphic(new ImageView(img));
+                notificationBuilder.hideAfter(Duration.seconds(2.0));
+                notificationBuilder.position(Pos.CENTER);
+                notificationBuilder.hideCloseButton();
+                notificationBuilder.show();
+            }
+        }
     }
 
     @FXML

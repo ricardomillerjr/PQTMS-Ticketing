@@ -15,17 +15,22 @@ import java.util.Date;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import javax.swing.Timer;
-
+import org.controlsfx.control.Notifications;
 
 public class main_app extends Application {
+
     private double xOffset = 0;
     private double yOffset = 0;
     private final Connection connection = ConnectionManager.getInstance().getConnection();
@@ -36,28 +41,29 @@ public class main_app extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
     @Override
     public void start(Stage stage) throws Exception {
         validate();
         Parent root = FXMLLoader.load(getClass().getResource("/ticketing/fxml/login.fxml"));
 
         root.setOnMousePressed(
-            (MouseEvent event) -> {
-                xOffset = event.getSceneX();
-                yOffset = event.getSceneY();
-            });
+                (MouseEvent event) -> {
+                    xOffset = event.getSceneX();
+                    yOffset = event.getSceneY();
+                });
         root.setOnMouseDragged(
-            (MouseEvent event) -> {
-                stage.setX(event.getScreenX() - xOffset);
-                stage.setY(event.getScreenY() - yOffset);
-            });
+                (MouseEvent event) -> {
+                    stage.setX(event.getScreenX() - xOffset);
+                    stage.setY(event.getScreenY() - yOffset);
+                });
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);    
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.centerOnScreen();
         stage.show();
     }
-    
+
     void validate() {
         try (Statement statement = connection.createStatement()) {
 //            statement.addBatch("delete from call_table where substr(fpdate,1,10)!=substr(now(),1,10)");
@@ -65,7 +71,7 @@ public class main_app extends Application {
             statement.addBatch("delete from ttable where substr(fpdate,1,10)!=substr(now(),1,10)");
             int[] executeBatch = statement.executeBatch();
             for (int count = 0; count < executeBatch.length; count++) {
-                Notification.Notifier.INSTANCE.notifyInfo("Success", "[" + count + "] :---: Execute Query Batch [" + executeBatch[count] + "]");
+                System.out.println("[" + count + "] :---: Execute Query Batch [" + executeBatch[count] + "]");
             }
             statement.close();
         } catch (SQLException sqlex) {
@@ -77,13 +83,12 @@ public class main_app extends Application {
         ActionListener taskPerformer = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 Date dateTime = new Date();
+                Date dateTime = new Date();
 //                jLabel8.setText(DateFormat.getDateInstance(DateFormat.LONG).format(dateTime));
 //                jLabel14.setText(DateFormat.getTimeInstance(DateFormat.DEFAULT).format(dateTime));
             }
         };
         new Timer(1000, taskPerformer).start();
     }
-    
-}
 
+}
