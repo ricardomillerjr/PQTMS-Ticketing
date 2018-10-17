@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane hbarPolicy="ALWAYS" pannable="true" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
+<ScrollPane hbarPolicy="ALWAYS" pannable="true" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
    <content>
       <AnchorPane fx:id="root_pane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #2E2A33;">
       	<children>

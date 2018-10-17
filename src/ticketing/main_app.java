@@ -46,7 +46,6 @@ public class main_app extends Application {
     public void start(Stage stage) throws Exception {
         validate();
         Parent root = FXMLLoader.load(getClass().getResource("/ticketing/fxml/login.fxml"));
-
         root.setOnMousePressed(
                 (MouseEvent event) -> {
                     xOffset = event.getSceneX();
@@ -60,6 +59,7 @@ public class main_app extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
+        stage.setFullScreen(false);
         stage.centerOnScreen();
         stage.show();
     }
