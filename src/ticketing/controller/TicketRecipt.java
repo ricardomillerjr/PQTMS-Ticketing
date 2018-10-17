@@ -39,8 +39,8 @@ import ticketing.dao.pacd_user;
  */
 public class TicketRecipt implements Initializable {
 
-    HashMap parameters = new HashMap();
-    pacd_user puser;
+    private HashMap parameters = new HashMap();
+    private pacd_user puser;
     private Connection connection = ConnectionManager.getInstance().getConnection();
     private JasperPrint print;
     String descrip;
@@ -48,8 +48,6 @@ public class TicketRecipt implements Initializable {
     private AnchorPane main_root_anchorPane;
     @FXML
     private Label lblcounternumber;
-    @FXML
-    private JFXButton button_print;
     @FXML
     private Label lbldate;
     @FXML
@@ -60,12 +58,6 @@ public class TicketRecipt implements Initializable {
     private Label lbllhioname;
     @FXML
     private Label lblsoaddress;
-    @FXML
-    private AnchorPane sub_main_root;
-    @FXML
-    private JFXButton buttonCancel;
-    @FXML
-    private Label lbltype;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
