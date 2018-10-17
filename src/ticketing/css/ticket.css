@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
@@ -30,3 +31,37 @@ and open the template in the editor.
     -fx-text-fill: black;
     -fx-font-weight:bold;
 }
+=======
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Aug 2018, 10:29:40 PM
+    Author     : itmu03
+*/
+#red_button {
+    -fx-background-color:  #026338;
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
+    -fx-border-color:white;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-weight:bold;
+}
+#red_button:hover{
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
+    -fx-background-color: #1B3E33;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+}
+#red_button:pressed{
+    -fx-background-radius: 10;
+    -fx-border-radius:10;
+    -fx-background-color: #048A49;
+    -fx-text-fill: black;
+    -fx-font-weight:bold;
+}
+>>>>>>> cf1a640fd7ff3e70a0f8d94642799621d27fed67
