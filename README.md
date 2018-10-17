@@ -10,7 +10,7 @@ Requirements Softwares Are the Following:
 
 1. Must have <b>Windows 7 (64-bit)</b>, <b>Windows 8 (64-bit)</b>, <b>Windows 10 (64-bit)</b> Operating System.
    <h1>Attention!!! (32-bit) OS Will Not Work.</h1> 
-2. Install <b><a href="https://developers.redhat.com/download-manager/file/java-10-openjdk-10.0.2-1.b13.redhat.windows.x86_64.msi">RedHat Developer OpenJDK 10.0.2-1(64-bit)</a></b> or <b><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html">Java SE Development Kit 10.0.2(64-bit)</a></b>. Do not install Java 11 because JavaFX is being decoupled. It is now <a href="https://openjfx.io/"><b>OpenJFX</b></a>.
+2. Install <b><a href="https://developers.redhat.com/download-manager/file/java-10-openjdk-10.0.2-1.b13.redhat.windows.x86_64.msi">RedHat Developer OpenJDK 10.0.2-1(64-bit)</a></b> or <b><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html">Java SE Development Kit 10.0.2(64-bit)</a></b>. <b>Do not install Java 11 in Oracle</b> because <b>JavaFX</b> is being decoupled. It is now <a href="https://openjfx.io/"><b>OpenJFX</b></a>.
 3. Must have Termal Printer <b><a href=https://www.poscentral.com.au/epson-tm-t82ii-serial-usb-psu-black-thermal-receipt-printer.html>Epson TM-T82 II Thermal Receipt Printer</a></b>.<br><br>
 
 <h2/>Sample Print Ticket<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG"/><br>
