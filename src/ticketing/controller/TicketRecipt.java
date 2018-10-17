@@ -30,7 +30,6 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
 
 import ticketing.ConnectionManager;
-import ticketing.Notification;
 import ticketing.dao.pacd_user;
 
 /**
@@ -68,7 +67,6 @@ public class TicketRecipt implements Initializable {
     public void onPrint(ActionEvent event) throws IOException, JRException {
         disableWarning();
         if (JasperPrintManager.printReport(print, false)) {
-            Notification.Notifier.INSTANCE.notifySuccess("Success", "Printing...");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
             AnchorPane pane = loader.load();
@@ -76,7 +74,6 @@ public class TicketRecipt implements Initializable {
             userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
             main_root_anchorPane.getChildren().setAll(pane);
         } else {
-            Notification.Notifier.INSTANCE.notifyError("Error", "Something Went Wrong");
         }
     }
 

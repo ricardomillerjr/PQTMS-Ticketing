@@ -57,7 +57,6 @@ import java.sql.CallableStatement;
 import javafx.scene.input.MouseEvent;
 
 import ticketing.ConnectionManager;
-import ticketing.Notification;
 import ticketing.dao.pacd_user;
 
 public class LoginController implements Initializable {
