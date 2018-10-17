@@ -7,29 +7,17 @@
 package ticketing.controller;
 
 import java.io.IOException;
-
 import java.net.URL;
-
-import java.sql.Connection;
-
-import java.util.HashMap;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-
-import com.jfoenix.controls.JFXButton;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
-
-import ticketing.ConnectionManager;
 import ticketing.dao.pacd_user;
 
 /**
@@ -38,11 +26,8 @@ import ticketing.dao.pacd_user;
  */
 public class TicketRecipt implements Initializable {
 
-    private HashMap parameters = new HashMap();
     private pacd_user puser;
-    private Connection connection = ConnectionManager.getInstance().getConnection();
     private JasperPrint print;
-    String descrip;
     @FXML
     private AnchorPane main_root_anchorPane;
     @FXML
@@ -64,8 +49,7 @@ public class TicketRecipt implements Initializable {
 
     @FXML
     @SuppressWarnings({"unchecked", "unchecked"})
-    public void onPrint(ActionEvent event) throws IOException, JRException {
-        disableWarning();
+    private void onPrint(ActionEvent event) throws IOException, JRException {
         if (JasperPrintManager.printReport(print, false)) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
@@ -73,11 +57,13 @@ public class TicketRecipt implements Initializable {
             UserPageController userpage = loader.getController();
             userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
             main_root_anchorPane.getChildren().setAll(pane);
+            disableWarning();
         } else {
+            System.err.println("Error in Printing Ticket...");
         }
     }
 
-    public static void disableWarning() {
+    protected static void disableWarning() {
         System.err.close();
         System.setErr(System.out);
     }
