@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .button{
     -fx-background-color:#026338;
     -fx-font-size: 20;
@@ -13,19 +12,3 @@
     -fx-background-color:#048A49;
     -fx-text-fill: white;
 }
-=======
-.button{
-    -fx-background-color:#026338;
-    -fx-font-size: 20;
-    -fx-background-radius: 10;
-}
-.button:hover{
-    -fx-font-size: 24;
-    -fx-background-color: #1B3E33;
-    -fx-text-fill:  white;
-}
-.button:pressed{
-    -fx-background-color:#048A49;
-    -fx-text-fill: white;
-}
->>>>>>> cf1a640fd7ff3e70a0f8d94642799621d27fed67

@@ -43,11 +43,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
-=======
->>>>>>> cf1a640fd7ff3e70a0f8d94642799621d27fed67
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -128,12 +125,8 @@ public class UserPageController implements Initializable {
     private TableColumn<ModelTable, String> date_Now;
     @FXML
     private Label lblsoaddress;
-<<<<<<< HEAD
     private List<String> fdescrip = new ArrayList<>();
     private List<String> flane = new ArrayList<>();
-=======
-    private String[] ftable = null;
->>>>>>> cf1a640fd7ff3e70a0f8d94642799621d27fed67
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -163,7 +156,6 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-<<<<<<< HEAD
         Statement statement;
         lbldate.setText(getDateNow());
         try {
@@ -183,11 +175,6 @@ public class UserPageController implements Initializable {
         }
         try {
             statement = ConnectionManager.getInstance().getConnection().createStatement();
-=======
-        lbldate.setText(getDateNow());
-        try {
-            Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
->>>>>>> cf1a640fd7ff3e70a0f8d94642799621d27fed67
             ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_name from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
