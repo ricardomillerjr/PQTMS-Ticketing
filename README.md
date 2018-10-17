@@ -22,4 +22,3 @@ Requirements Softwares Are the Following:
 <h2/>Other's Priority<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_priority.PNG"/><br>
 <h2/>Bulk Transaction<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/bulk.PNG"/><br>
 <h2/>Call Supervisor FXML<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/callsvr.PNG"/><br>
-
