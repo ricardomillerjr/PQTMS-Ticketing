@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<ScrollPane hbarPolicy="ALWAYS" pannable="true" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
+<ScrollPane hbarPolicy="ALWAYS" pannable="true" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/10.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
    <content>
       <AnchorPane fx:id="root_pane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #2E2A33;">
       	<children>
@@ -99,13 +98,13 @@
       						<FontAwesomeIconView caretBias="false" disable="true" glyphName="USERS" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="1188.0" layoutY="293.0" size="64" textAlignment="CENTER" wrappingWidth="68.99998189136386" />
       						<Button fx:id="payment_regular" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="371.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickPR" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Payment Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="371.0">
       							<font>
-      								<Font name="System Bold" size="15.0" />
+      								<Font name="System Bold" size="20.0" />
       							</font>
       							<cursor>
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="517.0" layoutY="286.0" size="64" />
+      						<FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="571.0" layoutY="283.0" size="128" />
       						<FontAwesomeIconView disable="true" glyphName="PRODUCT_HUNT" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="518.0" layoutY="503.0" size="64" />
             						<AnchorPane layoutX="-8.0" layoutY="521.0" prefHeight="181.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             							<children>
