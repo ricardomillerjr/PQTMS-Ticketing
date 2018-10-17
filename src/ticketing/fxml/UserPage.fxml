@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <ScrollPane hbarPolicy="ALWAYS" pannable="true" vbarPolicy="ALWAYS" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.UserPageController">
    <content>
       <AnchorPane fx:id="root_pane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #2E2A33;">
@@ -23,7 +22,7 @@
       			<children>
       				<AnchorPane fx:id="inner_archpane" layoutY="30.0" prefHeight="824.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       					<children>
-      						<Button fx:id="orbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="714.0" layoutY="166.0" mnemonicParsing="false" onAction="#OnClickOR" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Other's Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="714.0">
+      						<Button fx:id="orbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="713.0" layoutY="186.0" mnemonicParsing="false" onAction="#OnClickOR" prefHeight="175.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Other's Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="713.0">
       							<font>
       								<Font name="System Bold" size="15.0" />
       							</font>
@@ -31,7 +30,7 @@
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<Button id="priority_button" fx:id="payment_priority" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="371.0" layoutY="396.0" mnemonicParsing="false" onAction="#onClickPP" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Payment Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="371.0">
+      						<Button id="priority_button" fx:id="payment_priority" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="371.0" layoutY="396.0" mnemonicParsing="false" onAction="#onClickPP" prefHeight="175.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Payment Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="371.0">
       							<font>
       								<Font name="System Bold" size="15.0" />
       							</font>
@@ -39,7 +38,7 @@
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<Button id="employed_button" fx:id="blkbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="1055.0" layoutY="166.0" mnemonicParsing="false" onAction="#OnClickBlk" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Bulk Transaction's" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1055.0">
+      						<Button id="employed_button" fx:id="blkbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="1055.0" layoutY="186.0" mnemonicParsing="false" onAction="#OnClickBlk" prefHeight="175.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Bulk Transaction's" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1055.0">
       							<font>
       								<Font name="System Bold" size="15.0" />
       							</font>
@@ -47,7 +46,7 @@
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<Button id="special_button" fx:id="opbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="714.0" layoutY="396.0" mnemonicParsing="false" onAction="#OnClickOP" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Other's Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="714.0">
+      						<Button id="special_button" fx:id="opbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="714.0" layoutY="396.0" mnemonicParsing="false" onAction="#OnClickOP" prefHeight="175.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Other's Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="714.0">
       							<font>
       								<Font name="System Bold" size="15.0" />
       							</font>
@@ -55,18 +54,18 @@
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<Group layoutX="527.0" layoutY="227.0" />
-      						<Label layoutX="371.0" layoutY="127.0" prefHeight="21.0" prefWidth="95.0" text="Cashier Lane" textFill="WHITE">
+      						<Group layoutX="527.0" layoutY="247.0" />
+      						<Label layoutX="377.0" layoutY="147.0" prefHeight="21.0" prefWidth="95.0" text="Cashier Lane" textFill="WHITE">
       							<font>
       								<Font size="15.0" />
       							</font>
       						</Label>
-      						<Label layoutX="714.0" layoutY="127.0" prefHeight="21.0" prefWidth="123.0" text="Transaction Lane" textFill="WHITE">
+      						<Label layoutX="714.0" layoutY="147.0" prefHeight="20.0" prefWidth="123.0" text="Transaction Lane" textFill="WHITE">
       							<font>
       								<Font size="15.0" />
       							</font>
       						</Label>
-      						<Button fx:id="call_supervisor" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="1055.0" layoutY="395.0" mnemonicParsing="false" onAction="#OnClckCallSuperVisor" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Call Supervisor" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1055.0">
+      						<Button fx:id="call_supervisor" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="1055.0" layoutY="395.0" mnemonicParsing="false" onAction="#OnClckCallSuperVisor" prefHeight="177.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Call Supervisor" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="1055.0">
       							<font>
       								<Font name="System Bold" size="15.0" />
       							</font>
@@ -74,9 +73,9 @@
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<FontAwesomeIconView id="icons_off" disable="true" glyphName="UNIVERSAL_ACCESS" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="867.0" layoutY="290.0" size="64" textAlignment="CENTER" wrappingWidth="68.99998189136386" />
-      						<FontAwesomeIconView caretBias="false" disable="true" glyphName="BLIND" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="885.0" layoutY="512.0" size="64" textAlignment="CENTER" wrappingWidth="32.99998253583908" />
-      						<FontAwesomeIconView fx:id="call_sepico" caretBias="false" disable="true" glyphName="PHONE" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="1196.0" layoutY="512.0" size="64" textAlignment="CENTER" wrappingWidth="52.99998715519905">
+      						<FontAwesomeIconView disable="true" glyphName="UNIVERSAL_ACCESS" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="902.0" layoutY="274.0" size="64" text="" textAlignment="CENTER" wrappingWidth="67.99998189136386" />
+      						<FontAwesomeIconView caretBias="false" disable="true" glyphName="BLIND" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="927.0" layoutY="476.0" size="64" textAlignment="CENTER" wrappingWidth="33.99998253583908" />
+      						<FontAwesomeIconView fx:id="call_sepico" caretBias="false" disable="true" glyphName="PHONE" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="1253.0" layoutY="474.0" size="64" textAlignment="CENTER" wrappingWidth="52.99998715519905">
       							<cursor>
       								<Cursor fx:constant="HAND" />
       							</cursor>
@@ -96,17 +95,17 @@
       								<Font size="10.0" />
       							</font>
       						</Label>
-      						<FontAwesomeIconView caretBias="false" disable="true" glyphName="USERS" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="1188.0" layoutY="293.0" size="64" textAlignment="CENTER" wrappingWidth="68.99998189136386" />
-      						<Button fx:id="payment_regular" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="371.0" layoutY="166.0" mnemonicParsing="false" onAction="#onClickPR" prefHeight="221.0" prefWidth="335.0" stylesheets="@../css/UserPage.css" text="Payment Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="371.0">
+      						<FontAwesomeIconView caretBias="false" disable="true" glyphName="USERS" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="1245.0" layoutY="272.0" size="64" text="" textAlignment="CENTER" wrappingWidth="68.99998189136386" />
+      						<Button fx:id="payment_regular" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="371.0" layoutY="186.0" mnemonicParsing="false" onAction="#onClickPR" prefHeight="175.0" prefWidth="286.0" stylesheets="@../css/UserPage.css" text="Payment Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="371.0">
       							<font>
-      								<Font name="System Bold" size="15.0" />
+      								<Font name="System Bold" size="20.0" />
       							</font>
       							<cursor>
       								<Cursor fx:constant="HAND" />
       							</cursor>
       						</Button>
-      						<FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="517.0" layoutY="286.0" size="64" />
-      						<FontAwesomeIconView disable="true" glyphName="PRODUCT_HUNT" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="518.0" layoutY="503.0" size="64" />
+      						<FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="564.0" layoutY="270.0" size="64" />
+      						<FontAwesomeIconView disable="true" glyphName="PRODUCT_HUNT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="564.0" layoutY="483.0" size="64" />
             						<AnchorPane layoutX="-8.0" layoutY="521.0" prefHeight="181.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             							<children>
             								<FontAwesomeIconView fx:id="homebtn_ico" glyphName="HOME" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="683.0" layoutY="103.0" onMouseClicked="#OnClickHomeBtn" size="64" text="" textAlignment="CENTER" wrappingWidth="92.24999785423279">
@@ -163,7 +162,7 @@
       								<Image url="@../img/logo2.png" />
       							</image>
       							<effect>
-      								<Glow level="0.11" />
+                              <Glow level="0.11" />
       							</effect>
       						</ImageView>
       					</children>
