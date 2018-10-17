@@ -14,7 +14,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -54,6 +53,7 @@ import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
+import java.sql.CallableStatement;
 import javafx.scene.input.MouseEvent;
 
 import ticketing.ConnectionManager;
@@ -66,7 +66,7 @@ public class LoginController implements Initializable {
     private double yOffset = 0;
     private final Connection connection = ConnectionManager.getInstance().getConnection();
     private String full_name = new String();
-    private Notification.Notifier notifier;
+    private UserPageController userpage;
     @FXML
     private JFXTextField username;
     @FXML
@@ -132,16 +132,13 @@ public class LoginController implements Initializable {
     @FXML
     public void login_OnClick(ActionEvent event) throws IOException {
         try {
-            PreparedStatement preparedStatement
-                    = connection.prepareStatement(
-                            "select acctlist.userid,acctlist.fname,acctlist.mname,acctlist.lname,acctlist.pname from acctlist where acctlist.userid=?");
 
-            preparedStatement.setString(1, username.getText());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            CallableStatement callableStatement = connection.prepareCall("{call emplookup(?)}", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            callableStatement.setString(1, username.getText());
+            ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
                 if (resultSet.getString("pname").equals(getMD5(String.valueOf(password.getText())))) {
                     pacd_user puser = new pacd_user();
-
                     puser.setUserid(resultSet.getString("userid"));
                     puser.setFirstname(resultSet.getString("fname"));
                     puser.setMiddlename(resultSet.getString("mname"));
@@ -152,12 +149,12 @@ public class LoginController implements Initializable {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
                         Parent home_page_parent = loader.load();
-                        UserPageController userpage = loader.getController();
+                        userpage = loader.getController();
                         userpage.getP(puser.getUserid(),
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
                                 puser.getLastname());
-
+                                            
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -176,6 +173,7 @@ public class LoginController implements Initializable {
                         app_stage.show();
 
                         if (app_stage.isShowing()) {
+
                             Notifications notificationBuilder = Notifications.create()
                                     .title("(PACD) User:")
                                     .text(puser.getUserid() + "\n" + full_name).darkStyle()
@@ -190,13 +188,10 @@ public class LoginController implements Initializable {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    Notification.Notifier.INSTANCE.notifyError("Error", "Invalid Password");
                 }
             } else {
-                Notification.Notifier.INSTANCE.notifyError("Error", "UserID does not Exist");
             }
         } catch (SQLException ex) {
-            Notification.Notifier.INSTANCE.notifyError("Error", ex.getLocalizedMessage());
         }
     }
 

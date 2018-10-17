@@ -43,7 +43,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
-import java.sql.PreparedStatement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -124,6 +123,7 @@ public class UserPageController implements Initializable {
     private TableColumn<ModelTable, String> date_Now;
     @FXML
     private Label lblsoaddress;
+    private String[] ftable = null;
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -153,11 +153,10 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         lbldate.setText(getDateNow());
         try {
             Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_address from so_name");
+            ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_name from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
                 lblsoaddress.setText(rs.getString(2));
