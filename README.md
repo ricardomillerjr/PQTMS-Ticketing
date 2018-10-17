@@ -14,13 +14,12 @@ Requirements Softwares Are the Following:
 3. Must have Termal Printer <b><a href=https://www.poscentral.com.au/epson-tm-t82ii-serial-usb-psu-black-thermal-receipt-printer.html>Epson TM-T82 II Thermal Receipt Printer</a></b>.<br><br>
 <h2/>Sample Print Ticket<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/DSC_0758.JPG"/><br>
 <br>
-
+<h2/>Login FXML<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
 <h2/>Main Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/mainpage.PNG"/><br>
 <h2/>Payment Priority<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_priority.PNG"/><br>
 <h2/>Payment Regular<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/payment_regular.PNG"/><br>
 <h2/>Other's Regular<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_regular.PNG"/><br>
 <h2/>Other's Priority<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/others_priority.PNG"/><br>
 <h2/>Bulk Transaction<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/bulk.PNG"/><br>
-<h2/>Call Supervisor Page<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/callsvr.PNG"/><br>
-<h2/>Login Page<br<img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/login.PNG"/><br>
+<h2/>Call Supervisor FXML<br><img src="https://github.com/may112003/PQTMS-Ticketing/blob/master/screenshot/callsvr.PNG"/><br>
 
