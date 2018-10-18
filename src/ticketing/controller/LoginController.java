@@ -88,12 +88,9 @@ public class LoginController implements Initializable {
             while (rs.next()) {
                 results.add(rs.getString(1));
             }
-
             TextFields.bindAutoCompletion(username, results);
-
             NumberValidator numvalidator = new NumberValidator();
             RequiredFieldValidator validator = new RequiredFieldValidator();
-
             username.getValidators().add(numvalidator);
             password.getValidators().add(validator);
             numvalidator.setMessage("Numeric Only Not Letter.");
@@ -130,7 +127,6 @@ public class LoginController implements Initializable {
                     puser.setFirstname(resultSet.getString("fname"));
                     puser.setMiddlename(resultSet.getString("mname"));
                     puser.setLastname(resultSet.getString("lname"));
-
                     try {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
@@ -172,11 +168,12 @@ public class LoginController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else {
-                }
-            } else {
-            }
+                } else 
+                    System.err.println("Error in Comparing Passwords");
+            } else 
+                System.err.println("Error in ResultSet.next");
         } catch (SQLException ex) {
+            System.err.println(ex.getErrorCode());
         }
     }
 
