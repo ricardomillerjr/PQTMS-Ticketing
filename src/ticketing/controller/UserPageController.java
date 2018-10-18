@@ -74,14 +74,12 @@ public class UserPageController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
+    private ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 
-   
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
     @FXML
     private FontAwesomeIconView powerbtn_ico;
-    @FXML
-    private FontAwesomeIconView call_sepico;
     @FXML
     private Label lblpacduser;
     @FXML
@@ -89,31 +87,13 @@ public class UserPageController implements Initializable {
     @FXML
     private AnchorPane root_pane;
     @FXML
-    private AnchorPane root_anchorpane;
-    @FXML
     private Label lhioname;
-    @FXML
-    private Button orbtn;
-    @FXML
-    private Button payment_regular;
-    @FXML
-    private Button blkbtn;
-    @FXML
-    private Button opbtn;
-    @FXML
-    private Button call_supervisor;
-    @FXML
-    private Button payment_priority;
-    @FXML
-    private FontAwesomeIconView homebtn_ico;
-    private Label lbladdress;
     @FXML
     private TableView<ModelTable> table;
     @FXML
     private TableColumn<ModelTable, String> ticketno;
     @FXML
     private TableColumn<ModelTable, String> type;
-    ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
     @FXML
     private TableColumn<ModelTable, String> date_Now;
     @FXML
@@ -149,7 +129,6 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Statement statement;
         lbldate.setText(getDateNow());
         lane_assignments();
     }
@@ -159,7 +138,6 @@ public class UserPageController implements Initializable {
         try {
             Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
-            
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
@@ -277,12 +255,12 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void onClickPR(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(3), puser.getUserid(),flane.get(3));
+        load_dd(fdescrip.get(3), puser.getUserid(), flane.get(3));
     }
 
     @FXML
     private void OnClickBlk(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(4), puser.getUserid(),flane.get(4));
+        load_dd(fdescrip.get(4), puser.getUserid(), flane.get(4));
     }
 
     @FXML
