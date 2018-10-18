@@ -11,6 +11,7 @@ package ticketing.dao;
  * @author millerr
  */
 public class pacd_user {
+
     private String userid;
     private String firstname;
     private String middlename;

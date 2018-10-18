@@ -7,45 +7,32 @@
 package ticketing.controller;
 
 import java.io.IOException;
-
 import java.net.URL;
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.beans.value.ObservableValue;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.geometry.Pos;
-
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import javafx.stage.Stage;
-
 import javafx.util.Duration;
-
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.textfield.TextFields;
-
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -55,7 +42,6 @@ import java.sql.CallableStatement;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
-
 import ticketing.ConnectionManager;
 import ticketing.dao.pacd_user;
 
@@ -168,10 +154,12 @@ public class LoginController implements Initializable {
                     } catch (IOException ex) {
                         Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else 
+                } else {
                     System.err.println("Error in Comparing Passwords");
-            } else 
+                }
+            } else {
                 System.err.println("Error in ResultSet.next");
+            }
         } catch (SQLException ex) {
             System.err.println(ex.getErrorCode());
         }

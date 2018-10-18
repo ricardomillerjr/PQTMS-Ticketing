@@ -11,6 +11,7 @@ package ticketing.dao;
  * @author melrose27
  */
 public class Counterr {
+
     private String Counter;
     private String Type;
     private String Date;

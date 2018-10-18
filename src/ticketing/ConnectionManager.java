@@ -13,10 +13,14 @@ package ticketing;
 import ticketing.dao.DBType;
 import java.io.FileInputStream;
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 import java.util.Properties;
+
+import javax.swing.JOptionPane;
 
 public class ConnectionManager {
 
@@ -31,21 +35,26 @@ public class ConnectionManager {
 
     public void close() {
         System.out.println("Closing connection");
+
         try {
             conn.close();
             conn = null;
-        } catch (SQLException e) {
-            System.err.println(e.getErrorCode());
+        } catch (Exception e) {
         }
     }
 
     public static Properties loadProperties(String sFile) {
         Properties p = new Properties();
-        try (FileInputStream in = new FileInputStream(sFile)) {
+
+        try {
+            FileInputStream in = new FileInputStream(sFile);
+
             p.load(in);
+            in.close();
         } catch (IOException iOException) {
-            System.err.println(iOException.getMessage());
+            JOptionPane.showMessageDialog(null, iOException);
         }
+
         return p;
     }
 
@@ -54,14 +63,18 @@ public class ConnectionManager {
             switch (dbType) {
                 case MYSQL: {
                     String M_CONN_STRING = "jdbc:mysql://" + p2.getProperty("TARGET_IP") + ":3306/counter?useSSL=false";
+
                     conn = DriverManager.getConnection(M_CONN_STRING, "itmu03", "phic");
+
                     return true;
                 }
+
                 default:
                     return false;
             }
         } catch (SQLException e) {
-            System.err.println(e.getErrorCode());
+            System.err.println(e);
+
             return false;
         }
     }
@@ -70,11 +83,13 @@ public class ConnectionManager {
         if (conn == null) {
             if (openConnection()) {
                 System.out.println("Connection opened");
+
                 return conn;
             } else {
                 return null;
             }
         }
+
         return conn;
     }
 
@@ -86,6 +101,10 @@ public class ConnectionManager {
         if (instance == null) {
             instance = new ConnectionManager();
         }
+
         return instance;
     }
 }
+
+
+//~ Formatted by Jindent --- http://www.jindent.com

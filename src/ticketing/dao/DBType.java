@@ -10,7 +10,9 @@ package ticketing.dao;
  *
  * @author Administrator
  */
-public enum DBType { MYSQL }
+public enum DBType {
+    MYSQL
+}
 
 
 //~ Formatted by Jindent --- http://www.jindent.com

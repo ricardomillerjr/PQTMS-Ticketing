@@ -32,56 +32,56 @@
                                     <font>
                                         <Font size="14.0" />
                                     </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
                                 </JFXTextField>
                                 <JFXPasswordField fx:id="password" labelFloat="true" layoutX="123.0" layoutY="238.0" maxWidth="326.0" minWidth="135.0" prefHeight="30.0" prefWidth="145.0" promptText="Enter password">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
                                 </JFXPasswordField>
                                 <JFXButton id="green_cancel" fx:id="cancel" layoutX="43.0" layoutY="324.0" onAction="#cancel_OnClick" prefHeight="32.0" prefWidth="100.0" stylesheets="@../css/login.css" text="Cancel" textFill="WHITE">
                                     <font>
                                         <Font name="Roboto Bold" size="18.0" />
                                     </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
                                 </JFXButton>
                                 <JFXButton id="green_login" fx:id="login" layoutX="211.0" layoutY="324.0" onAction="#login_OnClick" prefHeight="32.0" prefWidth="100.0" stylesheets="@../css/login.css" text="Login" textFill="WHITE">
                                     <font>
                                         <Font name="Roboto Bold" size="18.0" />
                                     </font>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
                                 </JFXButton>
-                              <VBox layoutX="20.0" layoutY="41.0" prefHeight="64.0" prefWidth="303.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: green;">
-                                  <children>
-                                      <Label alignment="CENTER" prefHeight="35.0" prefWidth="320.0" text="Philhealth Ticketing Machine" textAlignment="CENTER" textFill="WHITE">
-                                          <font>
-                                              <Font name="System Bold" size="20.0" />
-                                          </font>
-                                      </Label>
-                                      <Label alignment="CENTER" prefHeight="32.0" prefWidth="318.0" text="Version 2.0_D2" textAlignment="CENTER" textFill="WHITE">
-                                          <font>
-                                              <Font size="11.0" />
-                                          </font>
-                                      </Label>
-                                  </children>
-                              </VBox>
-                        <Label layoutX="132.0" layoutY="-47.0" prefHeight="79.0" prefWidth="79.0" style="-fx-background-color: green; -fx-background-radius: 500;" />
+                                <VBox layoutX="20.0" layoutY="41.0" prefHeight="64.0" prefWidth="303.0" style="-fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 4; -fx-border-radius: 4; -fx-background-color: green;">
+                                    <children>
+                                        <Label alignment="CENTER" prefHeight="35.0" prefWidth="320.0" text="Philhealth Ticketing Machine" textAlignment="CENTER" textFill="WHITE">
+                                            <font>
+                                                <Font name="System Bold" size="20.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" prefHeight="32.0" prefWidth="318.0" text="Version 2.0_D2" textAlignment="CENTER" textFill="WHITE">
+                                            <font>
+                                                <Font size="11.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </VBox>
+                                <Label layoutX="132.0" layoutY="-47.0" prefHeight="79.0" prefWidth="79.0" style="-fx-background-color: green; -fx-background-radius: 500;" />
                                 <ImageView fitHeight="49.0" fitWidth="47.0" layoutX="148.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../img/logo2.png" />
                                     </image>
                                 </ImageView>
-                        <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="173.0" size="52" />
-                        <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="270.0" size="52" />
+                                <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="173.0" size="52" />
+                                <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="270.0" size="52" />
                             </children>
                         </AnchorPane>
                     </children>

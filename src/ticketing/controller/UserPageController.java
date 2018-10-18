@@ -100,6 +100,7 @@ public class UserPageController implements Initializable {
     private Label lblsoaddress;
     private final List<String> fdescrip = new ArrayList<>();
     private final List<String> flane = new ArrayList<>();
+    private final List<String> tag = new ArrayList<>();
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -137,10 +138,14 @@ public class UserPageController implements Initializable {
         Statement statement;
         try {
             Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip,tag from ftable;");
+            int i=0;
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
+                tag.add(String.valueOf(rSet.getInt(3)));
+                System.out.println(flane.get(i)+" "+fdescrip.get(i)+" "+tag.get(i));
+                i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
@@ -240,22 +245,22 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void OnClickOR(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(1), puser.getUserid(), flane.get(1));
+        load_dd(flane.get(1), puser.getUserid(), fdescrip.get(1));
     }
 
     @FXML
     private void OnClickOP(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(0), puser.getUserid(), flane.get(0));
+        load_dd(flane.get(0), puser.getUserid(), fdescrip.get(0));
     }
 
     @FXML
     private void onClickPP(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(2), puser.getUserid(), flane.get(2));
+        load_dd(flane.get(2), puser.getUserid(), fdescrip.get(2));
     }
 
     @FXML
     private void onClickPR(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(3), puser.getUserid(), flane.get(3));
+        load_dd(flane.get(3), puser.getUserid(), fdescrip.get(3));
     }
 
     @FXML
@@ -330,8 +335,7 @@ public class UserPageController implements Initializable {
             stage2.centerOnScreen();
             stage2.show();
 
-            Stage stage = new Stage();
-            stage = (Stage) ((de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView) event.getSource()).getScene().getWindow();
             stage.close();
 
             if (stage2.isShowing()) {
@@ -359,24 +363,3 @@ public class UserPageController implements Initializable {
     }
 
 }
-
-/*
-   String SQl = "insert into ttable(fcnum,fttype,fpdate,flogg,uid) values(?,?,now(),now(),?)";
-                PreparedStatement preparedStatement = _connection.prepareStatement(SQl);
-                preparedStatement.setString(1, bean.getCounter());
-                preparedStatement.setString(2, bean.getType());
-                preparedStatement.setString(3, "0");
-                if (preparedStatement.executeUpdate() == 1) {
-//                    Image img = new Image("/ticketing/img/Add-ticket-icon.png");
-//                    Notifications notificationBuilder = Notifications.create()
-//                            .title("Ticket Number: " + bean.getCounter())
-//                            .text(lane_name)
-//                            .graphic(new ImageView(img))
-//                            .hideAfter(Duration.seconds(7.0))
-//                            .position(Pos.BOTTOM_RIGHT)
-//                            .hideCloseButton();
-//                    notificationBuilder.show();
- */
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
