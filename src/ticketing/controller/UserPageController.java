@@ -75,7 +75,7 @@ public class UserPageController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    private static final Connection connection = ConnectionManager.getInstance().getConnection();
+   
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
     @FXML
@@ -130,7 +130,7 @@ public class UserPageController implements Initializable {
     public void validate_table(String userid) {
         try {
             oblist.clear();
-            CallableStatement callableStatement = connection.prepareCall("{call count_ticket(?)}",
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call count_ticket(?)}",
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, userid);
@@ -151,8 +151,13 @@ public class UserPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Statement statement;
         lbldate.setText(getDateNow());
+        lane_assignments();
+    }
+
+    protected void lane_assignments() {
+        Statement statement;
         try {
-            Statement statement_lane = connection.createStatement();
+            Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
             
             while (rSet.next()) {
@@ -196,7 +201,7 @@ public class UserPageController implements Initializable {
                     @SuppressWarnings("unchecked")
                     JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
 
-                    CallableStatement callableStatement = connection.prepareCall("{call create_ticket_no(?,?,?)}",
+                    CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY);
                     callableStatement.setString(1, bean.getCounter());
@@ -294,7 +299,7 @@ public class UserPageController implements Initializable {
 
         dialog.showAndWait();
         if (dialog.getResponse() == DialogResponse.SEND) {
-            CallableStatement callableStatement = connection.prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, fullname);
             callableStatement.setString(2, "PACD");

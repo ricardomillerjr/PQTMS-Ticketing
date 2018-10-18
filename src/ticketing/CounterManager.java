@@ -7,22 +7,18 @@
 package ticketing;
 
 import ticketing.dao.Counterr;
-
 import java.io.IOException;
-
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 /**
  *
  * @author melrose27
  */
 public class CounterManager {
-    protected static Counterr bean;
-    protected static ResultSet resultSet = null;
     public static Counterr getNumber(String counter_Lane) throws SQLException, IOException {
+        ResultSet resultSet = null;
         try {
             CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call counter_number(?)}",
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -30,7 +26,7 @@ public class CounterManager {
             callableStatement.setString(1, counter_Lane);
             resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
-                bean = new Counterr();
+                Counterr bean = new Counterr();
                 bean.setCounter(resultSet.getString(1));
                 bean.setType(resultSet.getString(4));
                 bean.setDescription(resultSet.getString(6));
