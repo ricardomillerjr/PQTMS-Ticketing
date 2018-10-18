@@ -8,32 +8,23 @@ package ticketing;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import javafx.application.Application;
-
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import javax.swing.Timer;
-import org.controlsfx.control.Notifications;
 
 public class main_app extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;
-    private final Connection connection = ConnectionManager.getInstance().getConnection();
+   
 
     /**
      * @param args the command line arguments
@@ -65,7 +56,7 @@ public class main_app extends Application {
     }
 
     void validate() {
-        try (Statement statement = connection.createStatement()) {
+        try (Statement statement = ConnectionManager.getInstance().getConnection().createStatement()) {
 //            statement.addBatch("delete from call_table where substr(fpdate,1,10)!=substr(now(),1,10)");
             statement.addBatch("insert into tblog (select * from ttable where substr(fpdate,1,10)!=substr(now(),1,10))");
             statement.addBatch("delete from ttable where substr(fpdate,1,10)!=substr(now(),1,10)");
@@ -80,13 +71,9 @@ public class main_app extends Application {
     }
 
     void setTime() {
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date dateTime = new Date();
-//                jLabel8.setText(DateFormat.getDateInstance(DateFormat.LONG).format(dateTime));
-//                jLabel14.setText(DateFormat.getTimeInstance(DateFormat.DEFAULT).format(dateTime));
-            }
+        ActionListener taskPerformer = (ActionEvent e) -> {
+            Date dateTime = new Date();
+//            jLabel14.setText(DateFormat.getTimeInstance(DateFormat.DEFAULT).format(dateTime));
         };
         new Timer(1000, taskPerformer).start();
     }
