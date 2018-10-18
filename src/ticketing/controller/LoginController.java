@@ -77,7 +77,6 @@ public class LoginController implements Initializable {
     @FXML
     public void cancel_OnClick(ActionEvent event) {
         Stage stage = (Stage) cancel.getScene().getWindow();
-
         stage.close();
         System.exit(0);
     }

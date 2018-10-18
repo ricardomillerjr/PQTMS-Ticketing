@@ -43,6 +43,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -123,7 +125,8 @@ public class UserPageController implements Initializable {
     private TableColumn<ModelTable, String> date_Now;
     @FXML
     private Label lblsoaddress;
-    private String[] ftable = null;
+    private List<String> fdescrip = new ArrayList<>();
+    private List<String> flane = new ArrayList<>();
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -153,9 +156,25 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Statement statement;
         lbldate.setText(getDateNow());
         try {
-            Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
+            Statement statement_lane = connection.createStatement();
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");//acctlist.userid from acctlist;");
+            
+            while (rSet.next()) {
+                flane.add(rSet.getString(1));
+                fdescrip.add(rSet.getString(2));
+            }
+            
+            for (int i = 0; i < flane.size(); i++) {
+                System.out.println(flane.get(i)+" "+fdescrip.get(i)+" "+i);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            statement = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_name from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
@@ -249,27 +268,27 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void OnClickOR(ActionEvent event) throws JRException {
-        load_dd("ORR", puser.getUserid(), "OTHER'S REGULAR");
+        load_dd(fdescrip.get(1), puser.getUserid(), flane.get(1));
     }
 
     @FXML
     private void OnClickOP(ActionEvent event) throws JRException {
-        load_dd("OP", puser.getUserid(), "OTHER'S PRIORITY");
+        load_dd(fdescrip.get(0), puser.getUserid(), flane.get(0));
     }
 
     @FXML
     private void onClickPP(ActionEvent event) throws JRException {
-        load_dd("PP", puser.getUserid(), "PAYMENT PRIORITY");
+        load_dd(fdescrip.get(2), puser.getUserid(), flane.get(2));
     }
 
     @FXML
     private void onClickPR(ActionEvent event) throws JRException {
-        load_dd("PR", puser.getUserid(), "PAYMENT REGULAR");
+        load_dd(fdescrip.get(3), puser.getUserid(),flane.get(3));
     }
 
     @FXML
     private void OnClickBlk(ActionEvent event) throws JRException {
-        load_dd("BULK", puser.getUserid(), "BULK TRANSACTION");
+        load_dd(fdescrip.get(4), puser.getUserid(),flane.get(4));
     }
 
     @FXML
