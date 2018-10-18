@@ -12,27 +12,20 @@ import com.github.daytron.simpledialogfx.data.HeaderColorStyle;
 import com.github.daytron.simpledialogfx.dialog.Dialog;
 import com.github.daytron.simpledialogfx.dialog.DialogType;
 import java.awt.HeadlessException;
-
 import java.io.IOException;
-
 import java.net.URL;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Time;
-
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -160,15 +153,11 @@ public class UserPageController implements Initializable {
         lbldate.setText(getDateNow());
         try {
             Statement statement_lane = connection.createStatement();
-            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");//acctlist.userid from acctlist;");
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
             
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
-            }
-            
-            for (int i = 0; i < flane.size(); i++) {
-                System.out.println(flane.get(i)+" "+fdescrip.get(i)+" "+i);
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
