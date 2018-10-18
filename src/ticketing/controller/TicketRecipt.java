@@ -82,14 +82,12 @@ public class TicketRecipt implements Initializable {
             JasperPrint print) {
         this.print = print;
         puser = new pacd_user();
-
         puser.setUserid(USERID);
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middelename);
         puser.setLastname(LastName);
         puser.setLane(Lane_Desciption);
-
-        lbluid.setText(USERID);
+        lbluid.setText(puser.getUserid());
         lbldate.setText(DateNow);
         lblcounternumber.setText(TokenNumber);
         lanename.setText(Lane_Desciption);
