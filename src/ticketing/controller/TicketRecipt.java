@@ -103,6 +103,7 @@ public class TicketRecipt implements Initializable {
         loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
         AnchorPane pane = loader.load();
         UserPageController userpage = loader.getController();
+        //where do this value go? - for inspections
         userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
         main_root_anchorPane.getChildren().setAll(pane);
     }
