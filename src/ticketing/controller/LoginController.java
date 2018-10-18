@@ -13,7 +13,6 @@ import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,7 +23,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import javafx.event.ActionEvent;
@@ -54,18 +52,17 @@ import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import java.sql.CallableStatement;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 
 import ticketing.ConnectionManager;
-import ticketing.Notification;
 import ticketing.dao.pacd_user;
 
 public class LoginController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
-    private final Connection connection = ConnectionManager.getInstance().getConnection();
-    private String full_name = new String();
     private UserPageController userpage;
     @FXML
     private JFXTextField username;
@@ -84,7 +81,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            Statement statement = connection.createStatement();
+            Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rs = statement.executeQuery("select acctlist.userid from acctlist;");
             List<String> results = new ArrayList<>();
 
@@ -101,26 +98,18 @@ public class LoginController implements Initializable {
             password.getValidators().add(validator);
             numvalidator.setMessage("Numeric Only Not Letter.");
             validator.setMessage("Input Not Given.");
-            username.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observable,
-                        Boolean oldValue, Boolean newValue) {
-                    if (!newValue) {
-                        username.validate();
-                        Image icn = new Image("ticketing/img/Status-security-low-icon.png");
-                        numvalidator.setIcon(new ImageView(icn));
-                    }
+            username.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) {
+                    username.validate();
+                    Image icn = new Image("ticketing/img/Status-security-low-icon.png");
+                    numvalidator.setIcon(new ImageView(icn));
                 }
             });
-            password.focusedProperty().addListener(new ChangeListener<Boolean>() {
-                @Override
-                public void changed(ObservableValue<? extends Boolean> observable,
-                        Boolean oldValue, Boolean newValue) {
-                    if (!newValue) {
-                        password.validate();
-                        Image icn = new Image("ticketing/img/Status-security-low-icon.png");
-                        validator.setIcon(new ImageView(icn));
-                    }
+            password.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+                if (!newValue) {
+                    password.validate();
+                    Image icn = new Image("ticketing/img/Status-security-low-icon.png");
+                    validator.setIcon(new ImageView(icn));
                 }
             });
         } catch (SQLException ex) {
@@ -131,8 +120,7 @@ public class LoginController implements Initializable {
     @FXML
     public void login_OnClick(ActionEvent event) throws IOException {
         try {
-
-            CallableStatement callableStatement = connection.prepareCall("{call emplookup(?)}", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call emplookup(?)}", ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, username.getText());
             ResultSet resultSet = callableStatement.executeQuery();
             if (resultSet.next()) {
@@ -142,7 +130,6 @@ public class LoginController implements Initializable {
                     puser.setFirstname(resultSet.getString("fname"));
                     puser.setMiddlename(resultSet.getString("mname"));
                     puser.setLastname(resultSet.getString("lname"));
-                    full_name = puser.getLastname() + "," + puser.getFirstname() + " " + puser.getMiddlename();
 
                     try {
                         FXMLLoader loader = new FXMLLoader();
@@ -153,7 +140,7 @@ public class LoginController implements Initializable {
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
                                 puser.getLastname());
-                                            
+
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -165,22 +152,21 @@ public class LoginController implements Initializable {
                             app_stage.setX(mouseEvent.getScreenX() - xOffset);
                             app_stage.setY(mouseEvent.getScreenY() - yOffset);
                         });
-
-                        app_stage.hide();    // optional
-                        app_stage.setFullScreen(true);
                         app_stage.setScene(home_page_scene);
+                        Rectangle2D ScreenBounds = Screen.getPrimary().getVisualBounds();
+                        app_stage.setX(ScreenBounds.getMinX());
+                        app_stage.setY(ScreenBounds.getMinY());
+                        app_stage.setWidth(ScreenBounds.getWidth());
+                        app_stage.setHeight(ScreenBounds.getHeight());
                         app_stage.show();
-
                         if (app_stage.isShowing()) {
-
                             Notifications notificationBuilder = Notifications.create()
                                     .title("(PACD) User:")
-                                    .text(puser.getUserid() + "\n" + full_name).darkStyle()
+                                    .text(puser.getUserid() + "\n" + puser.getLastname() + "," + puser.getFirstname() + " " + puser.getMiddlename()).darkStyle()
                                     .graphic(new ImageView(new Image("ticketing/img/logo2.png")))
                                     .hideAfter(Duration.seconds(2.0))
                                     .position(Pos.CENTER)
                                     .hideCloseButton();
-
                             notificationBuilder.show();
                         }
                     } catch (IOException ex) {

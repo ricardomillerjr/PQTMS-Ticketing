@@ -1,8 +1,6 @@
 
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+    * To change this template file, choose Tools | Templates
  */
 package ticketing.controller;
 
@@ -17,7 +15,6 @@ import java.io.IOException;
 
 import java.net.URL;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -36,7 +33,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -47,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -82,13 +77,9 @@ public class UserPageController implements Initializable {
     private double xOffset = 0;
     private double yOffset = 0;
 
-    private static final Connection connection = ConnectionManager.getInstance().getConnection();
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
-    @FXML
     private FontAwesomeIconView powerbtn_ico;
-    @FXML
-    private FontAwesomeIconView call_sepico;
     @FXML
     private Label lblpacduser;
     @FXML
@@ -96,24 +87,7 @@ public class UserPageController implements Initializable {
     @FXML
     private AnchorPane root_pane;
     @FXML
-    private AnchorPane root_anchorpane;
-    @FXML
     private Label lhioname;
-    @FXML
-    private Button orbtn;
-    @FXML
-    private Button payment_regular;
-    @FXML
-    private Button blkbtn;
-    @FXML
-    private Button opbtn;
-    @FXML
-    private Button call_supervisor;
-    @FXML
-    private Button payment_priority;
-    @FXML
-    private FontAwesomeIconView homebtn_ico;
-    private Label lbladdress;
     @FXML
     private TableView<ModelTable> table;
     @FXML
@@ -124,9 +98,15 @@ public class UserPageController implements Initializable {
     @FXML
     private TableColumn<ModelTable, String> date_Now;
     @FXML
+<<<<<<< HEAD
     private Label lblsoaddress;
     private List<String> fdescrip = new ArrayList<>();
     private List<String> flane = new ArrayList<>();
+=======
+    private Label lblsoaddress = new Label();
+    private final List<String> fdescrip = new ArrayList<>();
+    private final List<String> flane = new ArrayList<>();
+>>>>>>> 74f0a9f23e6c2e262a6da6ab4e625999bf63eab7
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -137,7 +117,7 @@ public class UserPageController implements Initializable {
     public void validate_table(String userid) {
         try {
             oblist.clear();
-            CallableStatement callableStatement = connection.prepareCall("{call count_ticket(?)}",
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call count_ticket(?)}",
                     ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, userid);
@@ -156,20 +136,35 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+<<<<<<< HEAD
         Statement statement;
         lbldate.setText(getDateNow());
         try {
             Statement statement_lane = connection.createStatement();
             ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");//acctlist.userid from acctlist;");
             
+=======
+        load_tables();
+    }
+
+    private void load_tables() {
+        Statement statement;
+        lbldate.setText(getDateNow());
+        try {
+            Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
+>>>>>>> 74f0a9f23e6c2e262a6da6ab4e625999bf63eab7
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
             }
+<<<<<<< HEAD
             
             for (int i = 0; i < flane.size(); i++) {
                 System.out.println(flane.get(i)+" "+fdescrip.get(i)+" "+i);
             }
+=======
+>>>>>>> 74f0a9f23e6c2e262a6da6ab4e625999bf63eab7
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -207,7 +202,7 @@ public class UserPageController implements Initializable {
                     @SuppressWarnings("unchecked")
                     JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
 
-                    CallableStatement callableStatement = connection.prepareCall("{call create_ticket_no(?,?,?)}",
+                    CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY);
                     callableStatement.setString(1, bean.getCounter());
@@ -283,12 +278,20 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void onClickPR(ActionEvent event) throws JRException {
+<<<<<<< HEAD
         load_dd(fdescrip.get(3), puser.getUserid(),flane.get(3));
+=======
+        load_dd(fdescrip.get(3), puser.getUserid(), flane.get(3));
+>>>>>>> 74f0a9f23e6c2e262a6da6ab4e625999bf63eab7
     }
 
     @FXML
     private void OnClickBlk(ActionEvent event) throws JRException {
+<<<<<<< HEAD
         load_dd(fdescrip.get(4), puser.getUserid(),flane.get(4));
+=======
+        load_dd(fdescrip.get(4), puser.getUserid(), flane.get(4));
+>>>>>>> 74f0a9f23e6c2e262a6da6ab4e625999bf63eab7
     }
 
     @FXML
@@ -302,10 +305,9 @@ public class UserPageController implements Initializable {
                 HeaderColorStyle.GLOSS_MALACHITE,
                 "Type Here",
                 new SQLException().getNextException());
-
         dialog.showAndWait();
         if (dialog.getResponse() == DialogResponse.SEND) {
-            CallableStatement callableStatement = connection.prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, fullname);
             callableStatement.setString(2, "PACD");
@@ -338,19 +340,13 @@ public class UserPageController implements Initializable {
             Scene scene = new Scene(root);
             Stage stage2 = new Stage();
 
-            root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    xOffset = event.getSceneX();
-                    yOffset = event.getSceneY();
-                }
+            root.setOnMousePressed((MouseEvent event1) -> {
+                xOffset = event1.getSceneX();
+                yOffset = event1.getSceneY();
             });
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    stage2.setX(event.getScreenX() - xOffset);
-                    stage2.setY(event.getScreenY() - yOffset);
-                }
+            root.setOnMouseDragged((MouseEvent event1) -> {
+                stage2.setX(event1.getScreenX() - xOffset);
+                stage2.setY(event1.getScreenY() - yOffset);
             });
 
             stage2.initStyle(StageStyle.TRANSPARENT);
@@ -358,8 +354,7 @@ public class UserPageController implements Initializable {
             stage2.centerOnScreen();
             stage2.show();
 
-            Stage stage = new Stage();
-            stage = (Stage) ((de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView) event.getSource()).getScene().getWindow();
             stage.close();
 
             if (stage2.isShowing()) {
@@ -385,26 +380,4 @@ public class UserPageController implements Initializable {
             System.exit(0);
         }
     }
-
 }
-
-/*
-   String SQl = "insert into ttable(fcnum,fttype,fpdate,flogg,uid) values(?,?,now(),now(),?)";
-                PreparedStatement preparedStatement = _connection.prepareStatement(SQl);
-                preparedStatement.setString(1, bean.getCounter());
-                preparedStatement.setString(2, bean.getType());
-                preparedStatement.setString(3, "0");
-                if (preparedStatement.executeUpdate() == 1) {
-//                    Image img = new Image("/ticketing/img/Add-ticket-icon.png");
-//                    Notifications notificationBuilder = Notifications.create()
-//                            .title("Ticket Number: " + bean.getCounter())
-//                            .text(lane_name)
-//                            .graphic(new ImageView(img))
-//                            .hideAfter(Duration.seconds(7.0))
-//                            .position(Pos.BOTTOM_RIGHT)
-//                            .hideCloseButton();
-//                    notificationBuilder.show();
- */
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
