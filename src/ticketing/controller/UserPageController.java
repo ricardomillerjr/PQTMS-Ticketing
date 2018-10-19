@@ -14,7 +14,6 @@ import com.github.daytron.simpledialogfx.dialog.DialogType;
 import java.awt.HeadlessException;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -29,7 +28,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -74,7 +72,6 @@ public class UserPageController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
-    private ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
@@ -101,6 +98,7 @@ public class UserPageController implements Initializable {
     private final List<String> fdescrip = new ArrayList<>();
     private final List<String> flane = new ArrayList<>();
     private final List<String> tag = new ArrayList<>();
+    private final ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
@@ -139,12 +137,12 @@ public class UserPageController implements Initializable {
         try {
             Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip,tag from ftable;");
-            int i=0;
+            int i = 0;
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
                 tag.add(String.valueOf(rSet.getInt(3)));
-                System.out.println(flane.get(i)+" "+fdescrip.get(i)+" "+tag.get(i));
+                System.out.println(flane.get(i) + " " + fdescrip.get(i) + " " + tag.get(i));
                 i++;
             }
         } catch (SQLException ex) {
@@ -245,27 +243,32 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void OnClickOR(ActionEvent event) throws JRException {
+        System.out.println(fdescrip.get(1) + " " + flane.get(1));
         load_dd(flane.get(1), puser.getUserid(), fdescrip.get(1));
     }
 
     @FXML
     private void OnClickOP(ActionEvent event) throws JRException {
+        System.out.println(fdescrip.get(0) + " " + flane.get(0));
         load_dd(flane.get(0), puser.getUserid(), fdescrip.get(0));
     }
 
     @FXML
     private void onClickPP(ActionEvent event) throws JRException {
+        System.out.println(fdescrip.get(2) + " " + flane.get(2));
         load_dd(flane.get(2), puser.getUserid(), fdescrip.get(2));
     }
 
     @FXML
     private void onClickPR(ActionEvent event) throws JRException {
+        System.out.println(fdescrip.get(3) + " " + flane.get(3));
         load_dd(flane.get(3), puser.getUserid(), fdescrip.get(3));
     }
 
     @FXML
     private void OnClickBlk(ActionEvent event) throws JRException {
-        load_dd(fdescrip.get(4), puser.getUserid(), flane.get(4));
+        System.out.println(flane.get(4) + " " + fdescrip.get(4));
+        load_dd(flane.get(4), puser.getUserid(), fdescrip.get(4));
     }
 
     @FXML
@@ -282,7 +285,7 @@ public class UserPageController implements Initializable {
 
         dialog.showAndWait();
         if (dialog.getResponse() == DialogResponse.SEND) {
-            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor()}", ResultSet.TYPE_SCROLL_INSENSITIVE,
+            CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor(?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, fullname);
             callableStatement.setString(2, "PACD");

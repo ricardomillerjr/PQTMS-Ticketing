@@ -69,7 +69,6 @@
                   </Button>
                     </children>
                 </AnchorPane>
-                <Label fx:id="lbltype" layoutX="176.0" layoutY="63.0" prefHeight="17.0" prefWidth="43.0" textFill="#2e2a33" visible="false" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="558.0" layoutY="2.0" prefHeight="160.0" prefWidth="1704.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

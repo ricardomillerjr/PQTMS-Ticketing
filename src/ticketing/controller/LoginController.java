@@ -40,6 +40,7 @@ import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import java.sql.CallableStatement;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import ticketing.ConnectionManager;

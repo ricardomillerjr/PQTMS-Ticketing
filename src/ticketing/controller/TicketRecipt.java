@@ -13,7 +13,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -42,6 +45,8 @@ public class TicketRecipt implements Initializable {
     private Label lbllhioname;
     @FXML
     private Label lblsoaddress;
+    @FXML
+    private AnchorPane sub_main_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -99,10 +104,11 @@ public class TicketRecipt implements Initializable {
     private void onCancel(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
-        AnchorPane pane = loader.load();
+        Parent pane = loader.load();
         UserPageController userpage = loader.getController();
         //where do this value go? - for inspections
         userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
         main_root_anchorPane.getChildren().setAll(pane);
+//        sub_main_root.getChildren().setAll(pane);
     }
 }

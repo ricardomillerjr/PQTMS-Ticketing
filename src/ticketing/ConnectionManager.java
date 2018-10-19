@@ -35,26 +35,21 @@ public class ConnectionManager {
 
     public void close() {
         System.out.println("Closing connection");
-
         try {
             conn.close();
             conn = null;
-        } catch (Exception e) {
+        } catch (SQLException sqle) {
+            System.err.println(sqle.getMessage());
         }
     }
 
     public static Properties loadProperties(String sFile) {
         Properties p = new Properties();
-
-        try {
-            FileInputStream in = new FileInputStream(sFile);
-
-            p.load(in);
-            in.close();
+            try (FileInputStream in = new FileInputStream(sFile)) {
+                p.load(in);
         } catch (IOException iOException) {
-            JOptionPane.showMessageDialog(null, iOException);
+            System.err.println(iOException.getMessage());
         }
-
         return p;
     }
 
@@ -62,19 +57,15 @@ public class ConnectionManager {
         try {
             switch (dbType) {
                 case MYSQL: {
-                    String M_CONN_STRING = "jdbc:mysql://" + p2.getProperty("TARGET_IP") + ":3306/counter?useSSL=false";
-
+                    String M_CONN_STRING = "jdbc:mysql://" + p2.getProperty("TARGET_IP") + ":"+p2.getProperty("TARGET_PORT")+"/counter?useSSL=false";
                     conn = DriverManager.getConnection(M_CONN_STRING, "itmu03", "phic");
-
                     return true;
                 }
-
                 default:
                     return false;
             }
         } catch (SQLException e) {
             System.err.println(e);
-
             return false;
         }
     }
@@ -83,13 +74,11 @@ public class ConnectionManager {
         if (conn == null) {
             if (openConnection()) {
                 System.out.println("Connection opened");
-
                 return conn;
             } else {
                 return null;
             }
         }
-
         return conn;
     }
 
@@ -101,10 +90,6 @@ public class ConnectionManager {
         if (instance == null) {
             instance = new ConnectionManager();
         }
-
         return instance;
     }
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com
