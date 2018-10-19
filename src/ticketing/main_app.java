@@ -6,6 +6,7 @@
  */
 package ticketing;
 
+import com.github.fxrouter.FXRouter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -40,23 +41,26 @@ public class main_app extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         validate();
-        Parent root = FXMLLoader.load(getClass().getResource("/ticketing/fxml/login.fxml"));
-
-        root.setOnMousePressed(
-                (MouseEvent event) -> {
-                    xOffset = event.getSceneX();
-                    yOffset = event.getSceneY();
-                });
-        root.setOnMouseDragged(
-                (MouseEvent event) -> {
-                    stage.setX(event.getScreenX() - xOffset);
-                    stage.setY(event.getScreenY() - yOffset);
-                });
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.centerOnScreen();
-        stage.show();
+        FXRouter.bind(this, stage, "Hello World", 300, 275);    // bind FXRouter
+        FXRouter.when("login", "/ticketing/fxml/login.fxml");                     // set "firstPage" route
+        FXRouter.goTo("login");           
+//        Parent root = FXMLLoader.load(getClass().getResource("/ticketing/fxml/login.fxml"));
+//
+//        root.setOnMousePressed(
+//                (MouseEvent event) -> {
+//                    xOffset = event.getSceneX();
+//                    yOffset = event.getSceneY();
+//                });
+//        root.setOnMouseDragged(
+//                (MouseEvent event) -> {
+//                    stage.setX(event.getScreenX() - xOffset);
+//                    stage.setY(event.getScreenY() - yOffset);
+//                });
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.initStyle(StageStyle.TRANSPARENT);
+//        stage.centerOnScreen();
+//        stage.show();
     }
 
     void validate() {
