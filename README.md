@@ -17,7 +17,7 @@ Requirements for the Following:
 <br>
 <h2/>Login Page<br><img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot2/login.PNG"/><br>
 <h2/>Main Page<br><img src="http://172.22.124.91:3000/ricardomillerjr/PQTMS-Ticketing/raw/branch/master/screenshot2/mainpage.PNG"/><br>
-<h2/>Payment Priority<img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot2/payment_priority.PNG"/><br>
+<h2/>Payment Priority<br><img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot2/payment_priority.PNG"/><br>
 <h2/>Payment Regular<br><img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot2/payment_regular.PNG"/><br>
 <h2/>Other's Regular<br><img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot/others_regular.PNG"/><br>
 <h2/>Other's Priority<br><img src="http://172.22.124.91:3000/itmu03/PQTMS-Ticketing_Machine/raw/branch/master/screenshot2/others_priority.PNG"/><br>
