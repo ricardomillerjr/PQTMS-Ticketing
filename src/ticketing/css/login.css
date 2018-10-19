@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Aug 2018, 5:31:11 PM
+    Author     : itmu03
+*/
+
+#green_login{
+    -fx-background-color:#0A9002;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+    -fx-font-size: 18;
+}
+#green_login:hover{
+    -fx-background-color: #ACC9A5;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+#green_login:pressed{
+    -fx-background-color: #0A9002;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+#green_cancel{
+    -fx-background-color:#0A9002;
+    -fx-text-fill: white;
+    -fx-font-weight:bold;
+    -fx-font-size: 18;
+}
+#green_cancel:hover{
+    -fx-background-color: #ACC9A5;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+#green_cancel:pressed{
+    -fx-background-color: #0A9002;
+    -fx-border-color: black;
+    -fx-border-radius:5;
+    -fx-text-fill: black;
+    -fx-font-size: 18;
+}
+

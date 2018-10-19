@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="main_root_anchorPane" prefHeight="857.0" prefWidth="1704.0" style="-fx-background-color: #2E2A33;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.TicketRecipt">
+    <children>
+        <AnchorPane layoutX="-10.0" prefHeight="940.0" prefWidth="1704.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <AnchorPane fx:id="sub_main_root" layoutY="329.0" prefHeight="702.0" prefWidth="1704.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <children>
+                  <StackPane layoutX="505.0" layoutY="130.0" prefHeight="284.0" prefWidth="717.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
+                     <effect>
+                        <Glow level="0.19">
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                  </StackPane>
+                        <AnchorPane layoutX="727.0" layoutY="177.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: black; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10;">
+                            <children>
+                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="93.0" prefWidth="215.0" style="-fx-background-color: black;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
+                                    <font>
+                                        <Font name="System Bold" size="64.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="13.0" prefHeight="93.0" prefWidth="202.0" style="-fx-background-color: black;" text="Universal Lane" textFill="WHITE">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbluid" alignment="CENTER" layoutX="237.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: black;" text="02210702" textFill="WHITE">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lbldate" alignment="CENTER" layoutX="4.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: black;" text="2018-09-24" textFill="#fffefe">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </AnchorPane>
+                  <Button id="red_button" fx:id="button_print" layoutX="541.0" layoutY="201.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Print">
+                     <effect>
+                        <InnerShadow height="48.0" radius="24.25" width="51.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button id="red_button" fx:id="buttonCancel" layoutX="541.0" layoutY="274.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Cancel">
+                     <effect>
+                        <InnerShadow height="48.0" radius="24.25" width="51.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="558.0" layoutY="2.0" prefHeight="160.0" prefWidth="1704.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label alignment="CENTER" layoutX="49.0" layoutY="11.0" prefHeight="38.0" prefWidth="559.0" text="Philhealth Health Insurance Corporation" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" prefHeight="19.0" prefWidth="474.0" text="Republic of the Philippines" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font name="System Italic" size="13.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="58.0" layoutY="37.0" prefHeight="38.0" prefWidth="1648.0" text="PHILHEALTH REGIONAL OFFICE XI" textAlignment="CENTER" textFill="#59cb52" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblsoaddress" alignment="CENTER" layoutX="78.0" layoutY="72.0" prefHeight="27.0" prefWidth="464.0" text="so_address" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="89.0" fitWidth="83.0" layoutX="569.0" layoutY="2.0" pickOnBounds="true" AnchorPane.leftAnchor="569.0" AnchorPane.rightAnchor="1052.0">
+                    <image>
+                        <Image url="@../img/logo2.png" />
+                    </image>
+                    <effect>
+                        <Glow level="0.11" />
+                    </effect>
+                </ImageView>
+                <Label fx:id="lbllhioname" alignment="CENTER" layoutX="90.0" layoutY="99.0" prefHeight="27.0" prefWidth="447.0" text="lhio_name" textAlignment="CENTER" textFill="#099be0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
