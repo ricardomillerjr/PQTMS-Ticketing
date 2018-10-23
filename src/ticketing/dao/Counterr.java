@@ -12,10 +12,25 @@ package ticketing.dao;
  */
 public class Counterr {
 
+    /**
+     * @return the UserID
+     */
+    public String getUserID() {
+        return UserID;
+    }
+
+    /**
+     * @param UserID the UserID to set
+     */
+    public void setUserID(String UserID) {
+        this.UserID = UserID;
+    }
+
     private String Counter;
     private String Type;
     private String Date;
     private String Description;
+    private String UserID;
 
     /**
      * @return the Counter

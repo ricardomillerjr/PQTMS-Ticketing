@@ -131,6 +131,7 @@ public class UserPageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lbldate.setText(getDateNow());
         lane_assignments();
+        flane();
     }
 
     protected void lane_assignments() {
@@ -159,8 +160,6 @@ public class UserPageController implements Initializable {
                 lhioname.setText(rs.getString(1).toUpperCase());
                 lblsoaddress.setText(rs.getString(2));
                 puser.setLane(lhioname.getText());
-                System.out.println(rs.getString(1));
-                System.out.println(rs.getString(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -169,7 +168,7 @@ public class UserPageController implements Initializable {
 
     protected void load_dd(String ftable, String puserid, String lane_name) throws JRException {
         try {
-            Counterr bean = CounterManager.getNumber(ftable);
+            Counterr bean = CounterManager.getNumber(ftable,puserid);
             if (bean == null) {
                 System.err.println("No Rows Found");
             } else {
@@ -181,6 +180,7 @@ public class UserPageController implements Initializable {
                     parameters.put("lhioname", lhioname.getText());
                     parameters.put("dateNow", bean.getDate());
                     parameters.put("puserid", puser.getUserid());
+                    parameters.put("soaddress",lblsoaddress.getText());
 
                     DefaultJasperReportsContext context = DefaultJasperReportsContext.getInstance();
                     JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.xpath.executer.factory",
@@ -193,7 +193,7 @@ public class UserPageController implements Initializable {
                             ResultSet.CONCUR_READ_ONLY);
                     callableStatement.setString(1, bean.getCounter());
                     callableStatement.setString(2, bean.getType());
-                    callableStatement.setString(3, puserid);
+                    callableStatement.setString(3, bean.getUserID());
 
                     if (callableStatement.executeUpdate() == 1) {
                         FXMLLoader loader = new FXMLLoader();

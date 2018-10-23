@@ -39,14 +39,14 @@
                                         <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbluid" alignment="CENTER" layoutX="237.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #1196DE;" text="02210702" textFill="WHITE">
+                                <Label fx:id="lbluid" alignment="CENTER" layoutX="275.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #1196DE;" text="02210702" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="20.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbldate" alignment="CENTER" layoutX="7.0" layoutY="120.0" prefHeight="30.0" prefWidth="202.0" style="-fx-background-color: #1196DE;" text="2018-09-24" textFill="#fffefe">
+                                <Label fx:id="lbldate" alignment="CENTER" layoutX="7.0" layoutY="120.0" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #1196DE;" text="2018-09-24" textFill="#fffefe">
                                     <font>
-                                        <Font name="System Bold" size="20.0" />
+                                        <Font name="System Bold" size="10.0" />
                                     </font>
                                 </Label>
                             </children>

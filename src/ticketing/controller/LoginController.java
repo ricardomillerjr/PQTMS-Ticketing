@@ -76,12 +76,12 @@ public class LoginController implements Initializable {
                 results.add(rs.getString(1));
             }
             TextFields.bindAutoCompletion(username, results);
-            NumberValidator numvalidator = new NumberValidator();
+            RequiredFieldValidator numvalidator = new RequiredFieldValidator();
             RequiredFieldValidator validator = new RequiredFieldValidator();
             username.getValidators().add(numvalidator);
             password.getValidators().add(validator);
-            numvalidator.setMessage("Numeric Only Not Letter.");
-            validator.setMessage("Input Not Given.");
+            numvalidator.setMessage("Required ID.");
+            validator.setMessage("Required Password.");
             username.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     username.validate();
