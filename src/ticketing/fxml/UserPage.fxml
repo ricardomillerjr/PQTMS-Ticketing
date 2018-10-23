@@ -196,12 +196,12 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblprevnum" alignment="CENTER" layoutY="47.0" prefHeight="48.0" prefWidth="623.0" text="9000" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <Label fx:id="lblprevnum" alignment="CENTER" layoutY="47.0" prefHeight="48.0" prefWidth="623.0" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font size="48.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblprevlane" alignment="CENTER" layoutY="115.0" prefHeight="48.0" prefWidth="623.0" text="BULK TRANSACTION'S" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <Label fx:id="lblprevlane" alignment="CENTER" layoutY="115.0" prefHeight="48.0" prefWidth="623.0" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                            <font>
                               <Font size="36.0" />
                            </font>

@@ -122,7 +122,7 @@ public class LoginController implements Initializable {
                         userpage.getP(puser.getUserid(),
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
-                                puser.getLastname());
+                                puser.getLastname(),"","");
 
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

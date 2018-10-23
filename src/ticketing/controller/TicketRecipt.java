@@ -20,7 +20,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -50,8 +49,6 @@ public class TicketRecipt implements Initializable {
     private Label lbllhioname;
     @FXML
     private Label lblsoaddress;
-    @FXML
-    private AnchorPane sub_main_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -76,7 +73,7 @@ public class TicketRecipt implements Initializable {
             loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
             AnchorPane pane = loader.load();
             UserPageController userpage = loader.getController();
-            userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
+            userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
             main_root_anchorPane.getChildren().setAll(pane);
             disableWarning();
         } else {
@@ -123,8 +120,7 @@ public class TicketRecipt implements Initializable {
         Parent pane = loader.load();
         UserPageController userpage = loader.getController();
         //where do this value go? - for inspections
-        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
+        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
         main_root_anchorPane.getChildren().setAll(pane);
-//        sub_main_root.getChildren().setAll(pane);
     }
 }

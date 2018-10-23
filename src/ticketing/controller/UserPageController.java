@@ -261,12 +261,14 @@ public class UserPageController implements Initializable {
         return SimpleDateFormmatter.format(sqlDateCurrent);
     }
 
-    public void getP(String userid, String FirstName, String Middalename, String LastName) {
+    public void getP(String userid, String FirstName, String Middalename, String LastName,String lblprevnum,String lblprevlane) {
         puser.setUserid(userid);
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middalename);
         puser.setLastname(LastName);
         lblpacduser.setText(FirstName.toUpperCase() + " " + Middalename.toUpperCase() + " " + LastName.toUpperCase());
+        this.lblprevlane.setText(lblprevlane);
+        this.lblprevnum.setText(lblprevnum);
         validate_table(userid);
     }
 
