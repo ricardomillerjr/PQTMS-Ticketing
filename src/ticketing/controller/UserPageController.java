@@ -43,6 +43,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -100,6 +101,28 @@ public class UserPageController implements Initializable {
     private final List<String> fdescrip = new ArrayList<>();
     private final List<String> flane = new ArrayList<>();
     private final ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
+    @FXML
+    private AnchorPane root_anchorpane;
+    @FXML
+    private Button orbtn;
+    @FXML
+    private Button payment_priority;
+    @FXML
+    private Button blkbtn;
+    @FXML
+    private Button opbtn;
+    @FXML
+    private Button call_supervisor;
+    @FXML
+    private FontAwesomeIconView call_sepico;
+    @FXML
+    private Button payment_regular;
+    @FXML
+    private FontAwesomeIconView homebtn_ico;
+    @FXML
+    private Label lblprevnum;
+    @FXML
+    private Label lblprevlane;
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");

@@ -22,7 +22,7 @@
          <children>
             <AnchorPane fx:id="inner_archpane" layoutY="30.0" prefHeight="824.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <StackPane layoutX="144.0" layoutY="176.0" prefHeight="470.0" prefWidth="1096.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
+                  <StackPane layoutX="91.0" layoutY="176.0" prefHeight="470.0" prefWidth="1149.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
                      <effect>
                         <Glow level="0.19">
                            <input>
@@ -31,7 +31,7 @@
                         </Glow>
                      </effect>
                   </StackPane>
-                  <Button fx:id="orbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="530.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnClickOR" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Other's Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="530.0">
+                  <Button fx:id="orbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="510.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnClickOR" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Other's Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="510.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -42,7 +42,7 @@
                         <InnerShadow height="45.0" radius="23.5" width="51.0" />
                      </effect>
                   </Button>
-                  <Button id="priority_button" fx:id="payment_priority" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="176.0" layoutY="427.0" mnemonicParsing="false" onAction="#onClickPP" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Payment Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="176.0">
+                  <Button id="priority_button" fx:id="payment_priority" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="126.0" layoutY="427.0" mnemonicParsing="false" onAction="#onClickPP" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Payment Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="126.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -64,7 +64,7 @@
                         <InnerShadow height="45.0" radius="23.5" width="51.0" />
                      </effect>
                   </Button>
-                  <Button id="special_button" fx:id="opbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="530.0" layoutY="427.0" mnemonicParsing="false" onAction="#OnClickOP" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Other's Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="530.0">
+                  <Button id="special_button" fx:id="opbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="510.0" layoutY="427.0" mnemonicParsing="false" onAction="#OnClickOP" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Other's Priority" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="510.0">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -76,12 +76,12 @@
                      </effect>
                   </Button>
                   <Group layoutX="527.0" layoutY="247.0" />
-                  <Label layoutX="186.0" layoutY="147.0" prefHeight="21.0" prefWidth="95.0" text="Cashier Lane" textFill="WHITE">
+                  <Label layoutX="136.0" layoutY="147.0" prefHeight="21.0" prefWidth="95.0" text="Cashier Lane" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="535.0" layoutY="147.0" prefHeight="20.0" prefWidth="123.0" text="Transaction Lane" textFill="WHITE">
+                  <Label layoutX="525.0" layoutY="147.0" prefHeight="20.0" prefWidth="123.0" text="Transaction Lane" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -97,12 +97,12 @@
                         <InnerShadow height="45.0" radius="23.5" width="51.0" />
                      </effect>
                   </Button>
-                  <FontAwesomeIconView disable="true" glyphName="UNIVERSAL_ACCESS" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="759.0" layoutY="295.0" size="64" text="" textAlignment="CENTER" wrappingWidth="67.99998189136386">
+                  <FontAwesomeIconView disable="true" glyphName="UNIVERSAL_ACCESS" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="739.0" layoutY="295.0" size="64" text="" textAlignment="CENTER" wrappingWidth="67.99998189136386">
                      <effect>
                         <Glow level="0.11" />
                      </effect>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView caretBias="false" disable="true" glyphName="BLIND" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="776.0" layoutY="517.0" size="64" textAlignment="CENTER" wrappingWidth="33.99998253583908">
+                  <FontAwesomeIconView caretBias="false" disable="true" glyphName="BLIND" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="756.0" layoutY="517.0" size="64" textAlignment="CENTER" wrappingWidth="33.99998253583908">
                      <effect>
                         <Glow level="0.11" />
                      </effect>
@@ -135,7 +135,7 @@
                         <Glow level="0.11" />
                      </effect>
                   </FontAwesomeIconView>
-                  <Button fx:id="payment_regular" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="176.0" layoutY="207.0" mnemonicParsing="false" onAction="#onClickPR" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Payment Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="176.0">
+                  <Button fx:id="payment_regular" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="126.0" layoutY="207.0" mnemonicParsing="false" onAction="#onClickPR" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Payment Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="126.0">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -146,12 +146,12 @@
                         <InnerShadow height="45.0" radius="23.5" width="51.0" />
                      </effect>
                   </Button>
-                  <FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="399.0" layoutY="291.0" size="64">
+                  <FontAwesomeIconView disable="true" glyphName="REGISTERED" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="349.0" layoutY="291.0" size="64">
                      <effect>
                         <Glow level="0.11" />
                      </effect>
                   </FontAwesomeIconView>
-                  <FontAwesomeIconView disable="true" glyphName="PRODUCT_HUNT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="399.0" layoutY="517.0" size="64">
+                  <FontAwesomeIconView disable="true" glyphName="PRODUCT_HUNT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="349.0" layoutY="517.0" size="64">
                      <effect>
                         <Glow level="0.11" />
                      </effect>
@@ -172,17 +172,46 @@
                         <Label layoutX="717.0" layoutY="114.0" text="Home" textFill="WHITE" />
                      </children>
                   </AnchorPane>
-                  <TableView fx:id="table" layoutX="1280.0" layoutY="181.0" prefHeight="462.0" prefWidth="602.0" style="-fx-background-radius: 10;" stylesheets="@../css/table_summary.css">
+                  <TableView fx:id="table" layoutX="1270.0" layoutY="181.0" prefHeight="276.0" prefWidth="625.0" style="-fx-background-radius: 10;" stylesheets="@../css/table_summary.css">
                      <columns>
                         <TableColumn fx:id="ticketno" prefWidth="83.0" text="Count" />
-                        <TableColumn fx:id="type" prefWidth="218.0" text="Lane" />
-                        <TableColumn fx:id="date_Now" prefWidth="282.0" text="Date" />
+                        <TableColumn fx:id="type" prefWidth="279.0" text="Lane" />
+                        <TableColumn fx:id="date_Now" prefWidth="250.0" text="Date" />
                      </columns>
                      <effect>
                         <DropShadow />
                      </effect>
                   </TableView>
+                  <AnchorPane layoutX="1271.0" layoutY="471.0" prefHeight="175.0" prefWidth="623.0" style="-fx-background-color: #1d1d1d; -fx-background-radius: 10;" styleClass="l">
+                     <effect>
+                        <Glow>
+                           <input>
+                              <DropShadow />
+                           </input>
+                        </Glow>
+                     </effect>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="48.0" prefWidth="623.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;" text="Previous Printed Ticket" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblprevnum" alignment="CENTER" layoutY="47.0" prefHeight="48.0" prefWidth="623.0" text="9000" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font size="48.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="lblprevlane" alignment="CENTER" layoutY="115.0" prefHeight="48.0" prefWidth="623.0" text="BULK TRANSACTION'S" textAlignment="CENTER" textFill="#d8d8d8" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
                </children>
+               <effect>
+                  <DropShadow />
+               </effect>
             </AnchorPane>
          </children>
       </AnchorPane>
