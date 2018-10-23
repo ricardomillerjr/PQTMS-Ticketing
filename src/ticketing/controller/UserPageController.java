@@ -40,6 +40,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
@@ -97,7 +99,6 @@ public class UserPageController implements Initializable {
     private Label lblsoaddress;
     private final List<String> fdescrip = new ArrayList<>();
     private final List<String> flane = new ArrayList<>();
-    private final List<String> tag = new ArrayList<>();
     private final ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 
     protected String Now() {
@@ -133,28 +134,33 @@ public class UserPageController implements Initializable {
     }
 
     protected void lane_assignments() {
-        Statement statement;
         try {
             Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip,tag from ftable;");
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
             int i = 0;
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
-                tag.add(String.valueOf(rSet.getInt(3)));
-                System.out.println(flane.get(i) + " " + fdescrip.get(i) + " " + tag.get(i));
+                System.out.println(flane.get(i) + " " + fdescrip.get(i));
                 i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        flane();
+    }
+
+    protected void flane() {
+        Statement statement;
         try {
             statement = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_name from so_name");
+            ResultSet rs = statement.executeQuery("select pro_name,so_name from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
                 lblsoaddress.setText(rs.getString(2));
                 puser.setLane(lhioname.getText());
+                System.out.println(rs.getString(1));
+                System.out.println(rs.getString(2));
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
@@ -282,9 +288,21 @@ public class UserPageController implements Initializable {
                 HeaderColorStyle.GLOSS_MALACHITE,
                 "Type Here",
                 new SQLException().getNextException());
-
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        dialog.initOwner(app_stage);
+        dialog.initModality(Modality.WINDOW_MODAL);
         dialog.showAndWait();
-        if (dialog.getResponse() == DialogResponse.SEND) {
+        if (dialog.getResponse() != DialogResponse.SEND || dialog.getResponse() == DialogResponse.NO_RESPONSE || dialog.getResponse() == DialogResponse.CANCEL || dialog.getResponse() == DialogResponse.CLOSE || dialog.getResponse() == DialogResponse.NO) {
+            Image img = new Image("/ticketing/img/logo2.png");
+            Notifications notificationBuilder = Notifications.create();
+            notificationBuilder.title("Call Supervisor");
+            notificationBuilder.text("NO_RESPONSE" + "\nCancel");
+            notificationBuilder.graphic(new ImageView(img));
+            notificationBuilder.hideAfter(Duration.seconds(2.0));
+            notificationBuilder.position(Pos.CENTER);
+            notificationBuilder.hideCloseButton();
+            notificationBuilder.show();
+        } else {
             CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor(?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, fullname);
@@ -294,7 +312,7 @@ public class UserPageController implements Initializable {
             callableStatement.setInt(5, 0);
             callableStatement.setString(6, dialog.getTextEntry());
             if (callableStatement.executeUpdate() == 1) {
-                Image img = new Image("/ticketing/img/like-flat-128x128.png");
+                Image img = new Image("/ticketing/img/logo2.png");
                 Notifications notificationBuilder = Notifications.create();
                 notificationBuilder.title("Call Supervisor");
                 notificationBuilder.text("Submited");
