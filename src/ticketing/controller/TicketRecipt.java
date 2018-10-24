@@ -13,15 +13,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
+import javafx.util.Duration;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
-import ticketing.dao.pacd_user;
+import org.controlsfx.control.Notifications;
+import ticketing.model.pacd_user;
 
 /**
  *
@@ -45,8 +49,6 @@ public class TicketRecipt implements Initializable {
     private Label lbllhioname;
     @FXML
     private Label lblsoaddress;
-    @FXML
-    private AnchorPane sub_main_root;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,11 +58,22 @@ public class TicketRecipt implements Initializable {
     @SuppressWarnings({"unchecked", "unchecked"})
     private void onPrint(ActionEvent event) throws IOException, JRException {
         if (JasperPrintManager.printReport(print, false)) {
+            lanename.setFont(Font.font("Tahoma",40));
+            Image img = new Image("/ticketing/img/logo2.png");
+            Notifications notificationBuilder = Notifications.create();
+            notificationBuilder.title("Printing...");
+            notificationBuilder.text(lanename.getText()+"\n"+lblcounternumber.getText());
+            notificationBuilder.graphic(new ImageView(img));
+            notificationBuilder.hideAfter(Duration.seconds(2.0));
+            notificationBuilder.position(Pos.CENTER);
+            notificationBuilder.hideCloseButton();
+            notificationBuilder.show();
+
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
             AnchorPane pane = loader.load();
             UserPageController userpage = loader.getController();
-            userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
+            userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
             main_root_anchorPane.getChildren().setAll(pane);
             disableWarning();
         } else {
@@ -107,8 +120,7 @@ public class TicketRecipt implements Initializable {
         Parent pane = loader.load();
         UserPageController userpage = loader.getController();
         //where do this value go? - for inspections
-        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname());
+        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
         main_root_anchorPane.getChildren().setAll(pane);
-//        sub_main_root.getChildren().setAll(pane);
     }
 }

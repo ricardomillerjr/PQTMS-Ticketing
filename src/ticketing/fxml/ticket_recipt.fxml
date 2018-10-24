@@ -27,29 +27,32 @@
                         </Glow>
                      </effect>
                   </StackPane>
-                        <AnchorPane layoutX="727.0" layoutY="177.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: black; -fx-background-radius: 10; -fx-border-color: white; -fx-border-radius: 10;">
+                        <AnchorPane layoutX="727.0" layoutY="177.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: #1196DE; -fx-background-radius: 10; -fx-border-color: #2E2A33; -fx-border-radius: 10;">
                             <children>
-                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="93.0" prefWidth="215.0" style="-fx-background-color: black;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
+                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="17.0" prefHeight="93.0" prefWidth="173.0" style="-fx-background-color: #1196DE;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
                                     <font>
-                                        <Font name="System Bold" size="64.0" />
+                                        <Font name="System Bold" size="48.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="13.0" prefHeight="93.0" prefWidth="202.0" style="-fx-background-color: black;" text="Universal Lane" textFill="WHITE">
+                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="17.0" prefHeight="93.0" prefWidth="240.0" style="-fx-background-color: #1196DE;" text="Universal Lane" textFill="WHITE">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbluid" alignment="CENTER" layoutX="237.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: black;" text="02210702" textFill="WHITE">
+                                <Label fx:id="lbluid" alignment="CENTER" layoutX="275.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #1196DE;" text="02210702" textFill="WHITE">
                                     <font>
-                                        <Font size="10.0" />
+                                        <Font name="System Bold" size="20.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbldate" alignment="CENTER" layoutX="4.0" layoutY="120.0" prefHeight="27.0" prefWidth="167.0" style="-fx-background-color: black;" text="2018-09-24" textFill="#fffefe">
+                                <Label fx:id="lbldate" alignment="CENTER" layoutX="7.0" layoutY="120.0" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #1196DE;" text="2018-09-24" textFill="#fffefe">
                                     <font>
-                                        <Font size="10.0" />
+                                        <Font name="System Bold" size="10.0" />
                                     </font>
                                 </Label>
                             </children>
+                     <effect>
+                        <InnerShadow choke="0.28" color="#2e2a33" height="158.88" radius="81.535" width="169.26" />
+                     </effect>
                         </AnchorPane>
                   <Button id="red_button" fx:id="button_print" layoutX="541.0" layoutY="201.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Print">
                      <effect>

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="main_root" prefHeight="540.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.LoginController">
+<AnchorPane id="AnchorPane" fx:id="main_root" prefHeight="540.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ticketing.controller.LoginController">
     <children>
         <StackPane layoutX="2.0" prefHeight="557.0" prefWidth="475.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -28,7 +28,7 @@
                     <children>
                         <AnchorPane layoutX="66.0" layoutY="97.0" prefHeight="391.0" prefWidth="343.0" style="-fx-background-color: WHITE; -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0,1.5); -fx-background-radius: 20; -fx-border-radius: 4; -fx-padding: 8;">
                             <children>
-                                <JFXTextField fx:id="username" labelFloat="true" layoutX="123.0" layoutY="141.0" maxWidth="326.0" minWidth="123.0" prefHeight="30.0" prefWidth="145.0" promptText="Enter UserID">
+                                <JFXTextField fx:id="username" labelFloat="true" layoutX="95.0" layoutY="141.0" maxWidth="326.0" minWidth="123.0" prefHeight="30.0" prefWidth="173.0" promptText="Enter UserID">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -36,7 +36,7 @@
                                         <Cursor fx:constant="HAND" />
                                     </cursor>
                                 </JFXTextField>
-                                <JFXPasswordField fx:id="password" labelFloat="true" layoutX="123.0" layoutY="238.0" maxWidth="326.0" minWidth="135.0" prefHeight="30.0" prefWidth="145.0" promptText="Enter password">
+                                <JFXPasswordField fx:id="password" labelFloat="true" layoutX="93.0" layoutY="238.0" maxWidth="326.0" minWidth="135.0" prefHeight="30.0" prefWidth="173.0" promptText="Enter password">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -80,8 +80,8 @@
                                         <Image url="@../img/logo2.png" />
                                     </image>
                                 </ImageView>
-                                <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="173.0" size="52" />
-                                <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="78.0" layoutY="270.0" size="52" />
+                                <FontAwesomeIconView glyphName="USER" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="48.0" layoutY="173.0" size="52" />
+                                <FontAwesomeIconView glyphName="LOCK" glyphStyle="-fx-fill: linear-gradient(#0A9002 0%, #0A9002 70%, #0A9002 85%);" layoutX="48.0" layoutY="270.0" size="52" />
                             </children>
                         </AnchorPane>
                     </children>

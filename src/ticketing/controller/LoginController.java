@@ -44,7 +44,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import ticketing.ConnectionManager;
-import ticketing.dao.pacd_user;
+import ticketing.model.pacd_user;
 
 public class LoginController implements Initializable {
 
@@ -76,12 +76,12 @@ public class LoginController implements Initializable {
                 results.add(rs.getString(1));
             }
             TextFields.bindAutoCompletion(username, results);
-            NumberValidator numvalidator = new NumberValidator();
+            RequiredFieldValidator numvalidator = new RequiredFieldValidator();
             RequiredFieldValidator validator = new RequiredFieldValidator();
             username.getValidators().add(numvalidator);
             password.getValidators().add(validator);
-            numvalidator.setMessage("Numeric Only Not Letter.");
-            validator.setMessage("Input Not Given.");
+            numvalidator.setMessage("Required ID.");
+            validator.setMessage("Required Password.");
             username.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
                 if (!newValue) {
                     username.validate();
@@ -122,7 +122,7 @@ public class LoginController implements Initializable {
                         userpage.getP(puser.getUserid(),
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
-                                puser.getLastname());
+                                puser.getLastname(),"","");
 
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
