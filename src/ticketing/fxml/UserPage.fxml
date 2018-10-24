@@ -256,5 +256,10 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <Label fx:id="lbltime" layoutX="45.0" layoutY="180.0" prefHeight="21.0" prefWidth="114.0" text="Date" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

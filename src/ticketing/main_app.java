@@ -73,17 +73,4 @@ public class main_app extends Application {
             System.out.println(sqlex.getMessage());
         }
     }
-
-    void setTime() {
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date dateTime = new Date();
-//                jLabel8.setText(DateFormat.getDateInstance(DateFormat.LONG).format(dateTime));
-//                jLabel14.setText(DateFormat.getTimeInstance(DateFormat.DEFAULT).format(dateTime));
-            }
-        };
-        new Timer(1000, taskPerformer).start();
-    }
-
 }
