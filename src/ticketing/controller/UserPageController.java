@@ -120,14 +120,6 @@ public class UserPageController implements Initializable {
     @FXML
     private Button opbtn;
     @FXML
-    private Button call_supervisor;
-    @FXML
-    private FontAwesomeIconView call_sepico;
-    @FXML
-    private Button payment_regular;
-    @FXML
-    private FontAwesomeIconView homebtn_ico;
-    @FXML
     private Label lbltime;
 
     public void validate_table(String userid) {

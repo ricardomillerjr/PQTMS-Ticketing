@@ -120,12 +120,12 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblpacduser" layoutX="43.0" layoutY="36.0" prefHeight="33.0" prefWidth="256.0" text="Name" textFill="WHITE" AnchorPane.leftAnchor="43.0">
+                  <Label fx:id="lblpacduser" layoutX="43.0" layoutY="31.0" prefHeight="21.0" prefWidth="256.0" text="Name" textFill="WHITE" AnchorPane.leftAnchor="43.0">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbldate" layoutX="43.0" layoutY="109.0" prefHeight="21.0" prefWidth="114.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="43.0">
+                  <Label fx:id="lbldate" layoutX="43.0" layoutY="84.0" prefHeight="21.0" prefWidth="81.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="43.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -156,7 +156,7 @@
                         <Glow level="0.11" />
                      </effect>
                   </FontAwesomeIconView>
-                  <AnchorPane layoutX="-8.0" layoutY="521.0" prefHeight="181.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane layoutX="-8.0" layoutY="521.0" prefHeight="165.0" prefWidth="1924.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <FontAwesomeIconView fx:id="homebtn_ico" glyphName="HOME" glyphStyle="-fx-fill: linear-gradient(#C2C2C2 0%, #C2C2C2 70%, #C2C2C2 85%);" layoutX="683.0" layoutY="103.0" onMouseClicked="#OnClickHomeBtn" size="64" text="" textAlignment="CENTER" wrappingWidth="92.24999785423279">
                            <cursor>
@@ -208,7 +208,12 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="43.0" layoutY="80.0" text="Today is" textFill="#099be0">
+                  <Label layoutX="43.0" layoutY="55.0" text="Today is" textFill="#099be0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbltime" layoutX="43.0" layoutY="108.0" prefHeight="27.0" prefWidth="89.0" text="Server" textFill="#099be0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
@@ -256,10 +261,5 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <Label fx:id="lbltime" layoutX="45.0" layoutY="180.0" prefHeight="21.0" prefWidth="114.0" text="Date" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
