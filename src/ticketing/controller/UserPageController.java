@@ -34,8 +34,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -109,6 +113,22 @@ public class UserPageController implements Initializable {
     private Label lblprevnum;
     @FXML
     private Label lblprevlane;
+    @FXML
+    private Button payment_priority;
+    @FXML
+    private Button blkbtn;
+    @FXML
+    private Button opbtn;
+    @FXML
+    private Button call_supervisor;
+    @FXML
+    private FontAwesomeIconView call_sepico;
+    @FXML
+    private Button payment_regular;
+    @FXML
+    private FontAwesomeIconView homebtn_ico;
+    @FXML
+    private Label lbltime;
 
     public void validate_table(String userid) {
         try {
@@ -132,9 +152,17 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        timeBomb();
         lbldate.setText(getDateNow());
         lane_assignments();
         flane();
+    }
+
+    protected void timeBomb() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+        lbltime.setText(getCurrentTime());}),new KeyFrame(Duration.seconds(1)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
     }
 
     protected void lane_assignments() {
