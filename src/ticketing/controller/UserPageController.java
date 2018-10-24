@@ -256,7 +256,7 @@ public class UserPageController implements Initializable {
         Calendar c = Calendar.getInstance();
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         c.setTime(sqlDate);
-        c.add(Calendar.DAY_OF_MONTH, 3);
+        c.add(Calendar.DAY_OF_MONTH, 0);
         Date sqlDateCurrent = c.getTime();
         return SimpleDateFormmatter.format(sqlDateCurrent);
     }
