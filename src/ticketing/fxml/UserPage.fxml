@@ -125,7 +125,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbldate" layoutX="43.0" layoutY="84.0" prefHeight="21.0" prefWidth="81.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="43.0">
+                  <Label fx:id="lbldate" layoutX="120.0" layoutY="58.0" prefHeight="21.0" prefWidth="81.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="120.0">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -213,7 +213,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbltime" layoutX="43.0" layoutY="108.0" prefHeight="27.0" prefWidth="89.0" text="Server" textFill="#099be0">
+                  <Label fx:id="lbltime" layoutX="43.0" layoutY="78.0" prefHeight="27.0" prefWidth="200.0" text="Server" textFill="#099be0">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
