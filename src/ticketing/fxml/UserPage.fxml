@@ -33,7 +33,7 @@
                   </StackPane>
                   <Button fx:id="orbtn" alignment="BOTTOM_LEFT" focusTraversable="false" layoutX="510.0" layoutY="207.0" mnemonicParsing="false" onAction="#OnClickOR" prefHeight="191.0" prefWidth="322.0" stylesheets="@../css/UserPage.css" text="Other's Regular" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="510.0">
                      <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="Segoe UI Black" size="15.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -117,17 +117,17 @@
                   </FontAwesomeIconView>
                   <Label layoutX="43.0" layoutY="1.0" prefHeight="35.0" prefWidth="83.0" text="Welcome" textFill="#099be0" AnchorPane.leftAnchor="43.0">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblpacduser" layoutX="43.0" layoutY="36.0" prefHeight="33.0" prefWidth="256.0" text="Name" textFill="WHITE" AnchorPane.leftAnchor="43.0">
                      <font>
-                        <Font name="System Bold" size="10.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbldate" layoutX="43.0" layoutY="72.0" prefHeight="33.0" prefWidth="212.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="43.0">
+                  <Label fx:id="lbldate" layoutX="43.0" layoutY="109.0" prefHeight="21.0" prefWidth="114.0" text="Date" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="43.0">
                      <font>
-                        <Font size="10.0" />
+                        <Font size="14.0" />
                      </font>
                   </Label>
                   <FontAwesomeIconView caretBias="false" disable="true" glyphName="USERS" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="1105.0" layoutY="295.0" size="64" text="" textAlignment="CENTER" wrappingWidth="68.99998189136386">
@@ -208,6 +208,11 @@
                         </Label>
                      </children>
                   </AnchorPane>
+                  <Label layoutX="43.0" layoutY="80.0" text="Today is" textFill="#099be0">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
                <effect>
                   <DropShadow />

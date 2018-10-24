@@ -110,12 +110,6 @@ public class UserPageController implements Initializable {
     @FXML
     private Label lblprevlane;
 
-    protected String Now() {
-        SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
-        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-        return SimpleDateFormmatter.format(sqlDate);
-    }
-
     public void validate_table(String userid) {
         try {
             oblist.clear();
@@ -177,7 +171,7 @@ public class UserPageController implements Initializable {
 
     protected void load_dd(String ftable, String puserid, String lane_name) throws JRException {
         try {
-            Counterr bean = CounterManager.getNumber(ftable,puserid);
+            Counterr bean = CounterManager.getNumber(ftable, puserid);
             if (bean == null) {
                 System.err.println("No Rows Found");
             } else {
@@ -189,7 +183,7 @@ public class UserPageController implements Initializable {
                     parameters.put("lhioname", lhioname.getText());
                     parameters.put("dateNow", bean.getDate());
                     parameters.put("puserid", puser.getUserid());
-                    parameters.put("soaddress",lblsoaddress.getText());
+                    parameters.put("soaddress", lblsoaddress.getText());
 
                     DefaultJasperReportsContext context = DefaultJasperReportsContext.getInstance();
                     JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.xpath.executer.factory",
@@ -247,7 +241,7 @@ public class UserPageController implements Initializable {
         return SimpleDateFormmatter.format(sqlDateCurrent);
     }
 
-    public void getP(String userid, String FirstName, String Middalename, String LastName,String lblprevnum,String lblprevlane) {
+    public void getP(String userid, String FirstName, String Middalename, String LastName, String lblprevnum, String lblprevlane) {
         puser.setUserid(userid);
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middalename);
