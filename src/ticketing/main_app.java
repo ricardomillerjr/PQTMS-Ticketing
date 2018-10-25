@@ -6,12 +6,9 @@
  */
 package ticketing;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -22,24 +19,22 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javax.swing.Timer;
 
 public class main_app extends Application {
 
     private double xOffset = 0;
     private double yOffset = 0;
-    private final Connection connection = ConnectionManager.getInstance().getConnection();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        validate();
         launch(args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        validate();
         Parent root = FXMLLoader.load(getClass().getResource("/ticketing/fxml/login.fxml"));
 
         root.setOnMousePressed(
@@ -59,31 +54,18 @@ public class main_app extends Application {
         stage.show();
     }
 
-    void validate() {
-        try (Statement statement = connection.createStatement()) {
-//            statement.addBatch("delete from call_table where substr(fpdate,1,10)!=substr(now(),1,10)");
-            statement.addBatch("insert into tblog (select * from ttable where substr(fpdate,1,10)!=substr(now(),1,10))");
-            statement.addBatch("delete from ttable where substr(fpdate,1,10)!=substr(now(),1,10)");
-            int[] executeBatch = statement.executeBatch();
+    static void validate() {
+        try {
+            ConnectionManager.getInstance().getConnection().createStatement().addBatch("insert into tblog (select * from ttable where substr(fpdate,1,10)!=substr(now(),1,10))");
+            ConnectionManager.getInstance().getConnection().createStatement().addBatch("delete from ttable where substr(fpdate,1,10)!=substr(now(),1,10)");
+            int[] executeBatch = ConnectionManager.getInstance().getConnection().createStatement().executeBatch();
             for (int count = 0; count < executeBatch.length; count++) {
-               System.out.println("Success [" + count + "] :---: Execute Query Batch [" + executeBatch[count] + "]");
+                System.out.println("Success [" + count + "] :---: Execute Query Batch [" + executeBatch[count] + "]");
             }
-            statement.close();
+            ConnectionManager.getInstance().getConnection().createStatement().close();
         } catch (SQLException sqlex) {
             System.out.println(sqlex.getMessage());
         }
-    }
-
-    void setTime() {
-        ActionListener taskPerformer = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Date dateTime = new Date();
-//                jLabel8.setText(DateFormat.getDateInstance(DateFormat.LONG).format(dateTime));
-//                jLabel14.setText(DateFormat.getTimeInstance(DateFormat.DEFAULT).format(dateTime));
-            }
-        };
-        new Timer(1000, taskPerformer).start();
     }
 
 }

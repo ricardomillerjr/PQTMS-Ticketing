@@ -10,7 +10,7 @@ package ticketing;
  *
  * @author melrose27
  */
-import ticketing.dao.DBType;
+import ticketing.model.DBType;
 import java.io.FileInputStream;
 import java.io.IOException;
 

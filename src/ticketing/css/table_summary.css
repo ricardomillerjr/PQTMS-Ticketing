@@ -57,7 +57,7 @@
 }
 
 .table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: #0B9702/*-fx-focus-color;*/
 }
 
 .split-pane:horizontal > .split-pane-divider {

@@ -34,12 +34,17 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -47,6 +52,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import net.sf.jasperreports.engine.DefaultJasperReportsContext;
@@ -59,9 +65,9 @@ import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
 import ticketing.ConnectionManager;
 import ticketing.CounterManager;
-import ticketing.dao.Counterr;
-import ticketing.dao.ModelTable;
-import ticketing.dao.pacd_user;
+import ticketing.model.Counterr;
+import ticketing.model.ModelTable;
+import ticketing.model.pacd_user;
 
 /**
  * FXML Controller class
@@ -97,14 +103,20 @@ public class UserPageController implements Initializable {
     private Label lblsoaddress;
     private final List<String> fdescrip = new ArrayList<>();
     private final List<String> flane = new ArrayList<>();
-    private final List<String> tag = new ArrayList<>();
     private final ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
+    @FXML
+    private Label lblprevnum;
+    @FXML
+    private Label lblprevlane;
 
     protected String Now() {
         SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         return SimpleDateFormmatter.format(sqlDate);
     }
+    private AnchorPane root_anchorpane;
+    @FXML
+    private Label lbltime;
 
     public void validate_table(String userid) {
         try {
@@ -128,29 +140,40 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        timeBomb();
         lbldate.setText(getDateNow());
         lane_assignments();
+        flane();
+    }
+
+    protected void timeBomb() {
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
+        lbltime.setText(getCurrentTime());}),new KeyFrame(Duration.seconds(1)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
     }
 
     protected void lane_assignments() {
-        Statement statement;
         try {
             Statement statement_lane = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip,tag from ftable;");
+            ResultSet rSet = statement_lane.executeQuery("select flane,fdescrip from ftable;");
             int i = 0;
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
-                tag.add(String.valueOf(rSet.getInt(3)));
-                System.out.println(flane.get(i) + " " + fdescrip.get(i) + " " + tag.get(i));
+                System.out.println(flane.get(i) + " " + fdescrip.get(i));
                 i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    protected void flane() {
+        Statement statement;
         try {
             statement = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select so_name.pro_name,so_name.so_name from so_name");
+            ResultSet rs = statement.executeQuery("select pro_name,so_name from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
                 lblsoaddress.setText(rs.getString(2));
@@ -163,7 +186,7 @@ public class UserPageController implements Initializable {
 
     protected void load_dd(String ftable, String puserid, String lane_name) throws JRException {
         try {
-            Counterr bean = CounterManager.getNumber(ftable);
+            Counterr bean = CounterManager.getNumber(ftable, puserid);
             if (bean == null) {
                 System.err.println("No Rows Found");
             } else {
@@ -175,6 +198,7 @@ public class UserPageController implements Initializable {
                     parameters.put("lhioname", lhioname.getText());
                     parameters.put("dateNow", bean.getDate());
                     parameters.put("puserid", puser.getUserid());
+                    parameters.put("soaddress", lblsoaddress.getText());
 
                     DefaultJasperReportsContext context = DefaultJasperReportsContext.getInstance();
                     JRPropertiesUtil.getInstance(context).setProperty("net.sf.jasperreports.xpath.executer.factory",
@@ -187,7 +211,7 @@ public class UserPageController implements Initializable {
                             ResultSet.CONCUR_READ_ONLY);
                     callableStatement.setString(1, bean.getCounter());
                     callableStatement.setString(2, bean.getType());
-                    callableStatement.setString(3, puserid);
+                    callableStatement.setString(3, bean.getUserID());
 
                     if (callableStatement.executeUpdate() == 1) {
                         FXMLLoader loader = new FXMLLoader();
@@ -227,17 +251,19 @@ public class UserPageController implements Initializable {
         Calendar c = Calendar.getInstance();
         java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
         c.setTime(sqlDate);
-        c.add(Calendar.DAY_OF_MONTH, 3);
+        c.add(Calendar.DAY_OF_MONTH, 0);
         Date sqlDateCurrent = c.getTime();
         return SimpleDateFormmatter.format(sqlDateCurrent);
     }
 
-    public void getP(String userid, String FirstName, String Middalename, String LastName) {
+    public void getP(String userid, String FirstName, String Middalename, String LastName, String lblprevnum, String lblprevlane) {
         puser.setUserid(userid);
         puser.setFirstname(FirstName);
         puser.setMiddlename(Middalename);
         puser.setLastname(LastName);
         lblpacduser.setText(FirstName.toUpperCase() + " " + Middalename.toUpperCase() + " " + LastName.toUpperCase());
+        this.lblprevlane.setText(lblprevlane);
+        this.lblprevnum.setText(lblprevnum);
         validate_table(userid);
     }
 
@@ -282,9 +308,21 @@ public class UserPageController implements Initializable {
                 HeaderColorStyle.GLOSS_MALACHITE,
                 "Type Here",
                 new SQLException().getNextException());
-
+        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        dialog.initOwner(app_stage);
+        dialog.initModality(Modality.WINDOW_MODAL);
         dialog.showAndWait();
-        if (dialog.getResponse() == DialogResponse.SEND) {
+        if (dialog.getResponse() != DialogResponse.SEND || dialog.getResponse() == DialogResponse.NO_RESPONSE || dialog.getResponse() == DialogResponse.CANCEL || dialog.getResponse() == DialogResponse.CLOSE || dialog.getResponse() == DialogResponse.NO) {
+            Image img = new Image("/ticketing/img/logo2.png");
+            Notifications notificationBuilder = Notifications.create();
+            notificationBuilder.title("Call Supervisor");
+            notificationBuilder.text("NO_RESPONSE" + "\nCancel");
+            notificationBuilder.graphic(new ImageView(img));
+            notificationBuilder.hideAfter(Duration.seconds(2.0));
+            notificationBuilder.position(Pos.CENTER);
+            notificationBuilder.hideCloseButton();
+            notificationBuilder.show();
+        } else {
             CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call supervisor(?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             callableStatement.setString(1, fullname);
@@ -294,7 +332,7 @@ public class UserPageController implements Initializable {
             callableStatement.setInt(5, 0);
             callableStatement.setString(6, dialog.getTextEntry());
             if (callableStatement.executeUpdate() == 1) {
-                Image img = new Image("/ticketing/img/like-flat-128x128.png");
+                Image img = new Image("/ticketing/img/logo2.png");
                 Notifications notificationBuilder = Notifications.create();
                 notificationBuilder.title("Call Supervisor");
                 notificationBuilder.text("Submited");
