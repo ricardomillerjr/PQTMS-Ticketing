@@ -24,6 +24,8 @@ import javafx.util.Duration;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.export.JRPrintServiceExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
 import org.controlsfx.control.Notifications;
 import ticketing.model.pacd_user;
 
@@ -58,11 +60,14 @@ public class TicketRecipt implements Initializable {
     @SuppressWarnings({"unchecked", "unchecked"})
     private void onPrint(ActionEvent event) throws IOException, JRException {
         if (JasperPrintManager.printReport(print, false)) {
+            JRPrintServiceExporter exporter = new JRPrintServiceExporter();
+            exporter.setExporterInput(new SimpleExporterInput(print));
+            
             lanename.setFont(Font.font("Tahoma",40));
             Image img = new Image("/ticketing/img/logo2.png");
             Notifications notificationBuilder = Notifications.create();
             notificationBuilder.title("Printing...");
-            notificationBuilder.text(lanename.getText()+"\n"+lblcounternumber.getText());
+            notificationBuilder.text(exporter.getPrintService().toString());//lanename.getText()+"\n"+lblcounternumber.getText());
             notificationBuilder.graphic(new ImageView(img));
             notificationBuilder.hideAfter(Duration.seconds(2.0));
             notificationBuilder.position(Pos.CENTER);
