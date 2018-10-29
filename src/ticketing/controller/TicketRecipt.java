@@ -34,7 +34,8 @@ import ticketing.model.pacd_user;
  * @author itmu03
  */
 public class TicketRecipt implements Initializable {
-
+    private Image img;
+    private FXMLLoader loader = new FXMLLoader();
     private pacd_user puser;
     private JasperPrint print;
     @FXML
@@ -54,36 +55,38 @@ public class TicketRecipt implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        img = new Image("/ticketing/img/logo2.png");
+        loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
     }
 
     @FXML
     @SuppressWarnings({"unchecked", "unchecked"})
     private void onPrint(ActionEvent event) throws IOException, JRException {
+        disableWarning();
         if (JasperPrintManager.printReport(print, false)) {
-            JRPrintServiceExporter exporter = new JRPrintServiceExporter();
-            exporter.setExporterInput(new SimpleExporterInput(print));
-            
-            lanename.setFont(Font.font("Tahoma",40));
-            Image img = new Image("/ticketing/img/logo2.png");
-            Notifications notificationBuilder = Notifications.create();
-            notificationBuilder.title("Printing...");
-            notificationBuilder.text(exporter.getPrintService().toString());//lanename.getText()+"\n"+lblcounternumber.getText());
-            notificationBuilder.graphic(new ImageView(img));
-            notificationBuilder.hideAfter(Duration.seconds(2.0));
-            notificationBuilder.position(Pos.CENTER);
-            notificationBuilder.hideCloseButton();
-            notificationBuilder.show();
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
-            AnchorPane pane = loader.load();
-            UserPageController userpage = loader.getController();
-            userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
-            main_root_anchorPane.getChildren().setAll(pane);
-            disableWarning();
+            Notify(img);
+            SceneLoad(loader);
         } else {
             System.err.println("Error in Printing Ticket...");
         }
+    }
+
+    protected void Notify(Image img) {
+        Notifications notificationBuilder = Notifications.create();
+        notificationBuilder.title("Printing...");
+        notificationBuilder.text(lanename.getText()+"\n"+lblcounternumber.getText());
+        notificationBuilder.graphic(new ImageView(img));
+        notificationBuilder.hideAfter(Duration.seconds(2.0));
+        notificationBuilder.position(Pos.CENTER);
+        notificationBuilder.hideCloseButton();
+        notificationBuilder.show();
+    }
+
+    protected void SceneLoad(FXMLLoader loader) throws IOException {
+        AnchorPane pane = loader.load();
+        UserPageController userpage = loader.getController();
+        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(), lblcounternumber.getText(), lanename.getText());
+        main_root_anchorPane.getChildren().setAll(pane);
     }
 
     protected static void disableWarning() {
@@ -120,12 +123,6 @@ public class TicketRecipt implements Initializable {
 
     @FXML
     private void onCancel(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
-        Parent pane = loader.load();
-        UserPageController userpage = loader.getController();
-        //where do this value go? - for inspections
-        userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(),lblcounternumber.getText(),lanename.getText());
-        main_root_anchorPane.getChildren().setAll(pane);
+        SceneLoad(loader);
     }
 }

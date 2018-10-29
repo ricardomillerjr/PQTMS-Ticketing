@@ -61,6 +61,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
 import ticketing.ConnectionManager;
@@ -205,7 +206,6 @@ public class UserPageController implements Initializable {
                             "net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
                     @SuppressWarnings("unchecked")
                     JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
-
                     CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY);
