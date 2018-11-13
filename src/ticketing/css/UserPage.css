@@ -1,20 +1,21 @@
 .button{
-    -fx-background-color:#0B9702;
+    -fx-background-color:#004227;
     -fx-font-family:"Segoe UI";
     -fx-font-size: 20;
     -fx-background-radius: 10;
 }
+/*#0B9702*/
 .button:hover{
     -fx-font-family:"Segoe UI";
     -fx-font-size: 22;
-    -fx-background-color: #004227;
+    -fx-background-color:#009B58;
     -fx-text-fill:  white;
     -fx-background-radius: 10;
 }
 .button:pressed{
     -fx-font-family:"Segoe UI";
     -fx-font-size: 22;
-    -fx-background-color:darkgreen;
+    -fx-background-color:#2B2929;
     -fx-text-fill: white;
     -fx-background-radius: 10;
 }

@@ -47,6 +47,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -61,7 +62,6 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRPropertiesUtil;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperPrintManager;
 import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
 import ticketing.ConnectionManager;
@@ -79,7 +79,8 @@ public class UserPageController implements Initializable {
 
     private double xOffset = 0;
     private double yOffset = 0;
-
+    private TicketRecipt ticketrecipt = new TicketRecipt();
+    private FXMLLoader loader = new FXMLLoader();
     private final pacd_user puser = new pacd_user();
     public AnchorPane inner_archpane;
     @FXML
@@ -109,13 +110,6 @@ public class UserPageController implements Initializable {
     private Label lblprevnum;
     @FXML
     private Label lblprevlane;
-
-    protected String Now() {
-        SimpleDateFormat SimpleDateFormmatter = new SimpleDateFormat("hh:mm:ss a");
-        java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
-        return SimpleDateFormmatter.format(sqlDate);
-    }
-    private AnchorPane root_anchorpane;
     @FXML
     private Label lbltime;
 
@@ -141,6 +135,7 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        loader.setLocation(getClass().getResource("/ticketing/fxml/ticket_recipt.fxml"));
         timeBomb();
         lbldate.setText(getDateNow());
         lane_assignments();
@@ -162,22 +157,23 @@ public class UserPageController implements Initializable {
             while (rSet.next()) {
                 flane.add(rSet.getString(1));
                 fdescrip.add(rSet.getString(2));
-                System.out.println(flane.get(i) + " " + fdescrip.get(i));
+//                System.out.println(flane.get(i) + " " + fdescrip.get(i));
                 i++;
             }
         } catch (SQLException ex) {
             Logger.getLogger(UserPageController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        flane();
     }
 
     protected void flane() {
         Statement statement;
         try {
             statement = ConnectionManager.getInstance().getConnection().createStatement();
-            ResultSet rs = statement.executeQuery("select pro_name,so_name from so_name");
+            ResultSet rs = statement.executeQuery("select pro_name,so_name,so_address from so_name");
             if (rs.next()) {
                 lhioname.setText(rs.getString(1).toUpperCase());
-                lblsoaddress.setText(rs.getString(2));
+                lblsoaddress.setText(rs.getString(3));
                 puser.setLane(lhioname.getText());
             }
         } catch (SQLException ex) {
@@ -193,6 +189,7 @@ public class UserPageController implements Initializable {
             } else {
                 try {
                     FastHashMap parameters = new FastHashMap();
+                    parameters.setFast(true);
                     parameters.put("logo", getClass().getClassLoader().getResource("ticketing/img/logo.png"));
                     parameters.put("queue_number", bean.getCounter());
                     parameters.put("lane_descrip", bean.getDescription());
@@ -206,6 +203,7 @@ public class UserPageController implements Initializable {
                             "net.sf.jasperreports.engine.util.xml.JaxenXPathExecuterFactory");
                     @SuppressWarnings("unchecked")
                     JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
+
                     CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_READ_ONLY);
@@ -214,10 +212,8 @@ public class UserPageController implements Initializable {
                     callableStatement.setString(3, bean.getUserID());
 
                     if (callableStatement.executeUpdate() == 1) {
-                        FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource("/ticketing/fxml/ticket_recipt.fxml"));
                         AnchorPane pane = loader.load();
-                        TicketRecipt ticketrecipt = loader.getController();
+                        ticketrecipt = loader.getController();
                         ticketrecipt.onTicket(
                                 puser.getUserid(),
                                 bean.getCounter(),
@@ -269,7 +265,7 @@ public class UserPageController implements Initializable {
 
     @FXML
     private void OnClickOR(ActionEvent event) throws JRException {
-        System.out.println(fdescrip.get(1) + " " + flane.get(1));
+        System.out.println(event.getEventType().getName());
         load_dd(flane.get(1), puser.getUserid(), fdescrip.get(1));
     }
 

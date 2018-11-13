@@ -16,9 +16,9 @@
     <children>
         <AnchorPane layoutX="-10.0" prefHeight="940.0" prefWidth="1704.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <AnchorPane fx:id="sub_main_root" layoutY="329.0" prefHeight="702.0" prefWidth="1704.0" style="-fx-background-color: #2E2A33;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <AnchorPane fx:id="sub_main_root" layoutY="329.0" prefHeight="702.0" prefWidth="1704.0" style="-fx-background-color: #2B2929;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                  <StackPane layoutX="505.0" layoutY="130.0" prefHeight="284.0" prefWidth="717.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
+                  <StackPane layoutX="516.0" layoutY="187.0" prefHeight="242.0" prefWidth="717.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
                      <effect>
                         <Glow level="0.19">
                            <input>
@@ -27,24 +27,24 @@
                         </Glow>
                      </effect>
                   </StackPane>
-                        <AnchorPane layoutX="727.0" layoutY="177.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: #1196DE; -fx-background-radius: 10; -fx-border-color: #2E2A33; -fx-border-radius: 10;">
+                        <AnchorPane layoutX="747.0" layoutY="217.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: #004227; -fx-background-radius: 10; -fx-border-color: #2E2A33; -fx-border-radius: 10;">
                             <children>
-                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="17.0" prefHeight="93.0" prefWidth="173.0" style="-fx-background-color: #1196DE;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
+                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="17.0" prefHeight="93.0" prefWidth="173.0" style="-fx-background-color: #004227;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
                                     <font>
                                         <Font name="System Bold" size="48.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="17.0" prefHeight="93.0" prefWidth="240.0" style="-fx-background-color: #1196DE;" text="Universal Lane" textFill="WHITE">
+                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="17.0" prefHeight="93.0" prefWidth="240.0" style="-fx-background-color: #004227;" text="Universal Lane" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbluid" alignment="CENTER" layoutX="275.0" layoutY="120.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: #1196DE;" text="02210702" textFill="WHITE">
+                                <Label fx:id="lbluid" alignment="CENTER" layoutX="254.0" layoutY="120.0" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #004227;" text="02210702" textFill="WHITE">
                                     <font>
-                                        <Font name="System Bold" size="20.0" />
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbldate" alignment="CENTER" layoutX="7.0" layoutY="120.0" prefHeight="30.0" prefWidth="279.0" style="-fx-background-color: #1196DE;" text="2018-09-24" textFill="#fffefe">
+                                <Label fx:id="lbldate" alignment="CENTER" layoutX="8.0" layoutY="120.0" prefHeight="30.0" prefWidth="240.0" style="-fx-background-color: #004227;" text="2018-09-24" textFill="#fffefe">
                                     <font>
                                         <Font name="System Bold" size="10.0" />
                                     </font>
@@ -54,7 +54,7 @@
                         <InnerShadow choke="0.28" color="#2e2a33" height="158.88" radius="81.535" width="169.26" />
                      </effect>
                         </AnchorPane>
-                  <Button id="red_button" fx:id="button_print" layoutX="541.0" layoutY="201.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Print">
+                  <Button id="red_button" fx:id="button_print" layoutX="561.0" layoutY="221.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Print">
                      <effect>
                         <InnerShadow height="48.0" radius="24.25" width="51.0" />
                      </effect>
@@ -62,7 +62,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="red_button" fx:id="buttonCancel" layoutX="541.0" layoutY="274.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Cancel">
+                  <Button id="red_button" fx:id="buttonCancel" layoutX="561.0" layoutY="338.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Cancel">
                      <effect>
                         <InnerShadow height="48.0" radius="24.25" width="51.0" />
                      </effect>
