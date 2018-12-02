@@ -6,12 +6,10 @@
  */
 package ticketing;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import ticketing.controller.ConnectionManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -22,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javax.swing.Timer;
 
 public class main_app extends Application {
 

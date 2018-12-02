@@ -36,14 +36,9 @@ import org.controlsfx.control.textfield.TextFields;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.validation.NumberValidator;
 import com.jfoenix.validation.RequiredFieldValidator;
 import java.sql.CallableStatement;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Screen;
-import ticketing.ConnectionManager;
+import javafx.scene.input.KeyCombination;
 import ticketing.model.pacd_user;
 
 public class LoginController implements Initializable {
@@ -116,31 +111,35 @@ public class LoginController implements Initializable {
                     puser.setLastname(resultSet.getString("lname"));
                     try {
                         FXMLLoader loader = new FXMLLoader();
-                        loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage.fxml"));
+                        loader.setLocation(getClass().getResource("/ticketing/fxml/UserPage4.fxml"));
                         Parent home_page_parent = loader.load();
                         userpage = loader.getController();
                         userpage.getP(puser.getUserid(),
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
-                                puser.getLastname(),"","");
+                                puser.getLastname(), "", "");
 
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-                        home_page_parent.setOnMousePressed((MouseEvent mouseEvent) -> {
-                            xOffset = mouseEvent.getSceneX();
-                            yOffset = mouseEvent.getSceneY();
-                        });
-                        home_page_parent.setOnMouseDragged((MouseEvent mouseEvent) -> {
-                            app_stage.setX(mouseEvent.getScreenX() - xOffset);
-                            app_stage.setY(mouseEvent.getScreenY() - yOffset);
-                        });
+//                        home_page_parent.setOnMousePressed((MouseEvent mouseEvent) -> {
+//                            xOffset = mouseEvent.getSceneX();
+//                            yOffset = mouseEvent.getSceneY();
+//                        });
+//                        home_page_parent.setOnMouseDragged((MouseEvent mouseEvent) -> {
+//                            app_stage.setX(mouseEvent.getScreenX() - xOffset);
+//                            app_stage.setY(mouseEvent.getScreenY() - yOffset);
+//                        });
                         app_stage.setScene(home_page_scene);
-                        Rectangle2D ScreenBounds = Screen.getPrimary().getVisualBounds();
-                        app_stage.setX(ScreenBounds.getMinX());
-                        app_stage.setY(ScreenBounds.getMinY());
-                        app_stage.setWidth(ScreenBounds.getWidth());
-                        app_stage.setHeight(ScreenBounds.getHeight());
+//                        Rectangle2D ScreenBounds = Screen.getPrimary().getVisualBounds();
+//                        app_stage.setX(ScreenBounds.getMinX());
+//                        app_stage.setY(ScreenBounds.getMinY());
+//                        app_stage.setWidth(ScreenBounds.getWidth());
+//                        app_stage.setHeight(ScreenBounds.getHeight());
+                        app_stage.setFullScreen(true);
+                        app_stage.setForceIntegerRenderScale(true);
+                        app_stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
+//                        app_stage.centerOnScreen();
                         app_stage.show();
                         if (app_stage.isShowing()) {
                             Notifications notificationBuilder = Notifications.create()

@@ -4,9 +4,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
  */
-package ticketing;
+package ticketing.controller;
 
-import ticketing.model.Counterr;
+import ticketing.dao.Counterr;
 import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;

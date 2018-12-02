@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -18,7 +19,7 @@
             <children>
                 <AnchorPane fx:id="sub_main_root" layoutY="329.0" prefHeight="702.0" prefWidth="1704.0" style="-fx-background-color: #2B2929;" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
-                  <StackPane layoutX="516.0" layoutY="187.0" prefHeight="242.0" prefWidth="717.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
+                  <StackPane layoutX="435.0" layoutY="151.0" prefHeight="342.0" prefWidth="798.0" style="-fx-background-color: #2E2A33; -fx-background-radius: 10;">
                      <effect>
                         <Glow level="0.19">
                            <input>
@@ -27,26 +28,26 @@
                         </Glow>
                      </effect>
                   </StackPane>
-                        <AnchorPane layoutX="747.0" layoutY="217.0" prefHeight="176.0" prefWidth="435.0" style="-fx-background-color: #004227; -fx-background-radius: 10; -fx-border-color: #2E2A33; -fx-border-radius: 10;">
+                        <AnchorPane layoutX="747.0" layoutY="210.0" prefHeight="227.0" prefWidth="435.0" style="-fx-background-color: #004227; -fx-background-radius: 10; -fx-border-color: #2E2A33; -fx-border-radius: 10;">
                             <children>
-                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="253.0" layoutY="17.0" prefHeight="93.0" prefWidth="173.0" style="-fx-background-color: #004227;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
+                                <Label fx:id="lblcounternumber" alignment="CENTER" contentDisplay="CENTER" layoutX="20.0" layoutY="82.0" onMouseEntered="#lblcounternumberOnMouseEnter" prefHeight="70.0" prefWidth="386.0" style="-fx-background-color: #004227;" text="9000" textAlignment="CENTER" textFill="#fffbfb">
                                     <font>
                                         <Font name="System Bold" size="48.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lanename" alignment="CENTER" layoutX="9.0" layoutY="17.0" prefHeight="93.0" prefWidth="240.0" style="-fx-background-color: #004227;" text="Universal Lane" textFill="WHITE">
+                                <Label fx:id="lanename" alignment="CENTER" layoutX="16.0" layoutY="17.0" onMouseEntered="#lanenameOnMouseEnter" prefHeight="56.0" prefWidth="396.0" style="-fx-background-color: #004227;" text="Universal Lane" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="22.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbluid" alignment="CENTER" layoutX="254.0" layoutY="120.0" prefHeight="30.0" prefWidth="173.0" style="-fx-background-color: #004227;" text="02210702" textFill="WHITE">
+                                <Label fx:id="lbluid" alignment="CENTER" layoutX="227.0" layoutY="173.0" onMouseEntered="#lbluidOnMouseEnter" prefHeight="30.0" prefWidth="199.0" style="-fx-background-color: #004227;" text="02210702" textFill="WHITE">
                                     <font>
-                                        <Font name="System Bold" size="14.0" />
+                                        <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="lbldate" alignment="CENTER" layoutX="8.0" layoutY="120.0" prefHeight="30.0" prefWidth="240.0" style="-fx-background-color: #004227;" text="2018-09-24" textFill="#fffefe">
+                                <Label fx:id="lbldate" alignment="CENTER" layoutX="9.0" layoutY="173.0" onMouseEntered="#lbldateOnMouseEnter" prefHeight="30.0" prefWidth="206.0" style="-fx-background-color: #004227;" text="2018-09-24" textFill="#fffefe">
                                     <font>
-                                        <Font name="System Bold" size="10.0" />
+                                        <Font name="System Bold Italic" size="14.0" />
                                     </font>
                                 </Label>
                             </children>
@@ -54,7 +55,7 @@
                         <InnerShadow choke="0.28" color="#2e2a33" height="158.88" radius="81.535" width="169.26" />
                      </effect>
                         </AnchorPane>
-                  <Button id="red_button" fx:id="button_print" layoutX="561.0" layoutY="221.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Print">
+                  <Button id="red_button" fx:id="button_print" layoutX="479.0" layoutY="176.0" mnemonicParsing="false" onAction="#onPrint" prefHeight="70.0" prefWidth="249.0" stylesheets="@../css/ticket.css" text="Print">
                      <effect>
                         <InnerShadow height="48.0" radius="24.25" width="51.0" />
                      </effect>
@@ -62,7 +63,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button id="red_button" fx:id="buttonCancel" layoutX="561.0" layoutY="338.0" mnemonicParsing="false" onAction="#onCancel" prefHeight="56.0" prefWidth="167.0" stylesheets="@../css/ticket.css" text="Cancel">
+                  <Button id="red_button" fx:id="buttonCancel" layoutX="479.0" layoutY="402.0" mnemonicParsing="false" onAction="#onClose" prefHeight="70.0" prefWidth="249.0" stylesheets="@../css/ticket.css" text="Close">
                      <effect>
                         <InnerShadow height="48.0" radius="24.25" width="51.0" />
                      </effect>
@@ -70,6 +71,17 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="687.0" layoutY="223.0" size="32" wrappingWidth="24.952401161193848" />
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="685.0" layoutY="448.0" size="32" wrappingWidth="24.95240592956543" />
+                  <Button id="red_button" fx:id="buttonProceed" layoutX="479.0" layoutY="292.0" mnemonicParsing="false" onAction="#onProceed" prefHeight="70.0" prefWidth="249.0" stylesheets="@../css/ticket.css" text="Proceed">
+                     <effect>
+                        <InnerShadow height="48.0" radius="24.25" width="51.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" glyphStyle="-fx-fill: linear-gradient(#ffffff 0%, #ffffff 70%, #ffffff 85%);" layoutX="686.0" layoutY="336.0" size="32" wrappingWidth="24.95240592956543" />
                     </children>
                 </AnchorPane>
             </children>

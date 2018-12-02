@@ -13,6 +13,3 @@ package ticketing.model;
 public enum DBType {
     MYSQL
 }
-
-
-//~ Formatted by Jindent --- http://www.jindent.com

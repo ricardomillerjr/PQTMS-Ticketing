@@ -48,11 +48,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -64,9 +66,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
-import ticketing.ConnectionManager;
-import ticketing.CounterManager;
-import ticketing.model.Counterr;
+import org.controlsfx.control.PopOver;
+import ticketing.dao.Counterr;
 import ticketing.model.ModelTable;
 import ticketing.model.pacd_user;
 
@@ -112,6 +113,44 @@ public class UserPageController implements Initializable {
     private Label lblprevlane;
     @FXML
     private Label lbltime;
+    @FXML
+    private AnchorPane root_anchorpane;
+    @FXML
+    private Button orbtn;
+    @FXML
+    private Button payment_priority;
+    @FXML
+    private Button blkbtn;
+    @FXML
+    private Button opbtn;
+    @FXML
+    private Button call_supervisor;
+    @FXML
+    private FontAwesomeIconView call_sepico;
+    @FXML
+    private Button payment_regular;
+    @FXML
+    private FontAwesomeIconView homebtn_ico;
+    @FXML
+    private ScrollPane scollerrr;
+    @FXML
+    private Button call_supervisor1;
+    @FXML
+    private FontAwesomeIconView call_sepico1;
+    private PopOver popOver = new PopOver();
+    private Button button = new Button();
+
+    private void popupHandler(ActionEvent event) {
+        if (event.getSource() == popOver) {
+            VBox vBox = new VBox();
+            vBox.setPrefHeight(150.0);
+            vBox.setPrefWidth(90.0);
+            vBox.setStyle("-fx-background-color :#99F39D");
+            button = new Button(event.getTarget().toString());
+            popOver = new PopOver(vBox);
+            popOver.show(button);
+        }
+    }
 
     public void validate_table(String userid) {
         try {
@@ -140,11 +179,13 @@ public class UserPageController implements Initializable {
         lbldate.setText(getDateNow());
         lane_assignments();
         flane();
+        button.setOnAction(this::popupHandler);
     }
 
     protected void timeBomb() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-        lbltime.setText(getCurrentTime());}),new KeyFrame(Duration.seconds(1)));
+            lbltime.setText(getCurrentTime());
+        }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
@@ -204,30 +245,30 @@ public class UserPageController implements Initializable {
                     @SuppressWarnings("unchecked")
                     JasperPrint print = JasperFillManager.fillReport("report/ticketrcp5.jasper", parameters, new JREmptyDataSource());
 
-                    CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
-                            ResultSet.TYPE_SCROLL_INSENSITIVE,
-                            ResultSet.CONCUR_READ_ONLY);
-                    callableStatement.setString(1, bean.getCounter());
-                    callableStatement.setString(2, bean.getType());
-                    callableStatement.setString(3, bean.getUserID());
-
-                    if (callableStatement.executeUpdate() == 1) {
-                        AnchorPane pane = loader.load();
-                        ticketrecipt = loader.getController();
-                        ticketrecipt.onTicket(
-                                puser.getUserid(),
-                                bean.getCounter(),
-                                bean.getDate(),
-                                bean.getDescription(),
-                                puser.getFirstname(),
-                                puser.getMiddlename(),
-                                puser.getLastname(),
-                                lhioname.getText(),
-                                lblsoaddress.getText(),
-                                print);
-                        root_pane.getChildren().setAll(pane);
-                    }
-                } catch (SQLException | HeadlessException ex) {
+//                    CallableStatement callableStatement = ConnectionManager.getInstance().getConnection().prepareCall("{call create_ticket_no(?,?,?)}",
+//                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+//                            ResultSet.CONCUR_READ_ONLY);
+//                    callableStatement.setString(1, bean.getCounter());
+//                    callableStatement.setString(2, bean.getType());
+//                    callableStatement.setString(3, bean.getUserID());
+                    ScrollPane scrl = scollerrr;
+                    AnchorPane pane = loader.load();
+                    ticketrecipt = loader.getController();
+                    ticketrecipt.onTicket(
+                            puser.getUserid(),
+                            bean.getCounter(),
+                            bean.getDate(),
+                            bean.getDescription(),
+                            bean.getType(),
+                            puser.getFirstname(),
+                            puser.getMiddlename(),
+                            puser.getLastname(),
+                            lhioname.getText(),
+                            lblsoaddress.getText(),
+                            print);
+                    root_pane.getChildren().setAll(pane);
+                    scrl.setContent(root_pane);
+                } catch (HeadlessException ex) {
                     System.err.println(ex.getLocalizedMessage());
                 }
             }
