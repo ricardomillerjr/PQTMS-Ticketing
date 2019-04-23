@@ -36,6 +36,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.sql.CallableStatement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -54,6 +55,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.StageStyle;
@@ -67,6 +69,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import org.apache.commons.collections.FastHashMap;
 import org.controlsfx.control.Notifications;
 import org.controlsfx.control.PopOver;
+import org.joda.time.DateTime;
 import ticketing.dao.Counterr;
 import ticketing.model.ModelTable;
 import ticketing.model.pacd_user;
@@ -132,13 +135,13 @@ public class UserPageController implements Initializable {
     @FXML
     private FontAwesomeIconView homebtn_ico;
     @FXML
-    private ScrollPane scollerrr;
-    @FXML
     private Button call_supervisor1;
     @FXML
     private FontAwesomeIconView call_sepico1;
     private PopOver popOver = new PopOver();
     private Button button = new Button();
+    @FXML
+    private StackPane innerstack;
 
     private void popupHandler(ActionEvent event) {
         if (event.getSource() == popOver) {
@@ -174,12 +177,19 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ScrollPane scrl = new ScrollPane(root_pane);
+        scrl.setFitToHeight(true);
+        scrl.setFitToWidth(true);
+        scrl.autosize();
+        scrl.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scrl.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
         loader.setLocation(getClass().getResource("/ticketing/fxml/ticket_recipt.fxml"));
         timeBomb();
         lbldate.setText(getDateNow());
         lane_assignments();
         flane();
         button.setOnAction(this::popupHandler);
+
     }
 
     protected void timeBomb() {
@@ -251,7 +261,6 @@ public class UserPageController implements Initializable {
 //                    callableStatement.setString(1, bean.getCounter());
 //                    callableStatement.setString(2, bean.getType());
 //                    callableStatement.setString(3, bean.getUserID());
-                    ScrollPane scrl = scollerrr;
                     AnchorPane pane = loader.load();
                     ticketrecipt = loader.getController();
                     ticketrecipt.onTicket(
@@ -267,7 +276,6 @@ public class UserPageController implements Initializable {
                             lblsoaddress.getText(),
                             print);
                     root_pane.getChildren().setAll(pane);
-                    scrl.setContent(root_pane);
                 } catch (HeadlessException ex) {
                     System.err.println(ex.getLocalizedMessage());
                 }

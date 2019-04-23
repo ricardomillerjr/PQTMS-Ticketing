@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -59,12 +60,6 @@ public class TicketRecipt implements Initializable {
     @FXML
     private Label lblsoaddress;
     @FXML
-    private AnchorPane sub_main_root;
-    @FXML
-    private Button button_print;
-    @FXML
-    private Button buttonCancel;
-    @FXML
     private Button buttonProceed;
 
     @Override
@@ -81,7 +76,8 @@ public class TicketRecipt implements Initializable {
         callableStatement.setString(2, counnterr.getType());
         callableStatement.setString(3, counnterr.getUserID());
         if (callableStatement.executeUpdate() == exec) {
-            SceneLoad(loader);
+//            Notify(img,"Printing...");
+            System.out.println("Success");
         }
     }
 
@@ -89,7 +85,7 @@ public class TicketRecipt implements Initializable {
     @SuppressWarnings({"unchecked", "unchecked"})
     private void onPrint(ActionEvent event) throws IOException, JRException, SQLException {
         disableWarning();
-        Notify(img);
+        Notify(img, "Printing...");
         if (JasperPrintManager.printReport(print, false)) {
             OnProcess(1);
             SceneLoad(loader);
@@ -98,9 +94,9 @@ public class TicketRecipt implements Initializable {
         }
     }
 
-    protected void Notify(Image img) {
+    protected void Notify(Image img, String message) {
         Notifications notificationBuilder = Notifications.create();
-        notificationBuilder.title("Printing...");
+        notificationBuilder.title(message);
         notificationBuilder.text(lanename.getText() + "\n" + lblcounternumber.getText()).darkStyle();
         notificationBuilder.graphic(new ImageView(img));
         notificationBuilder.hideAfter(Duration.seconds(2.0));
@@ -111,9 +107,16 @@ public class TicketRecipt implements Initializable {
 
     protected void SceneLoad(FXMLLoader loader) throws IOException {
         AnchorPane pane = loader.load();
+        ScrollPane scroller = new ScrollPane();
         UserPageController userpage = loader.getController();
         userpage.getP(puser.getUserid(), puser.getFirstname(), puser.getMiddlename(), puser.getLastname(), lblcounternumber.getText(), lanename.getText());
         main_root_anchorPane.getChildren().setAll(pane);
+        scroller.setFitToHeight(true);
+        scroller.setFitToWidth(true);
+        scroller.autosize();
+        scroller.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scroller.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        scroller.setContent(main_root_anchorPane);
     }
 
     protected static void disableWarning() {
@@ -161,14 +164,14 @@ public class TicketRecipt implements Initializable {
 
     @FXML
     private void onClose(ActionEvent event) throws IOException {
-        if (event.getSource() == buttonCancel) {
-            SceneLoad(loader);
-        }
+//        if (event.getSource() == buttonCancel) {
+        SceneLoad(loader);
+//        }
     }
 
     @FXML
     private void lblcounternumberOnMouseEnter(MouseEvent event) {
-        onPop(lblcounternumber);
+//        onPop(lblcounternumber);
     }
 
     protected void onPop(Label label) {

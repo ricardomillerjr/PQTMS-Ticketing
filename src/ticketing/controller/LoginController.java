@@ -42,7 +42,7 @@ import javafx.scene.input.KeyCombination;
 import ticketing.model.pacd_user;
 
 public class LoginController implements Initializable {
-
+    
     private double xOffset = 0;
     private double yOffset = 0;
     private UserPageController userpage;
@@ -52,21 +52,21 @@ public class LoginController implements Initializable {
     private JFXPasswordField password;
     @FXML
     private JFXButton cancel;
-
+    
     @FXML
     public void cancel_OnClick(ActionEvent event) {
         Stage stage = (Stage) cancel.getScene().getWindow();
         stage.close();
         System.exit(0);
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             Statement statement = ConnectionManager.getInstance().getConnection().createStatement();
             ResultSet rs = statement.executeQuery("select acctlist.userid from acctlist;");
             List<String> results = new ArrayList<>();
-
+            
             while (rs.next()) {
                 results.add(rs.getString(1));
             }
@@ -95,7 +95,7 @@ public class LoginController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     @FXML
     public void login_OnClick(ActionEvent event) throws IOException {
         try {
@@ -118,7 +118,7 @@ public class LoginController implements Initializable {
                                 puser.getFirstname(),
                                 puser.getMiddlename(),
                                 puser.getLastname(), "", "");
-
+                        
                         Scene home_page_scene = new Scene(home_page_parent);
                         Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
@@ -136,6 +136,7 @@ public class LoginController implements Initializable {
 //                        app_stage.setY(ScreenBounds.getMinY());
 //                        app_stage.setWidth(ScreenBounds.getWidth());
 //                        app_stage.setHeight(ScreenBounds.getHeight());
+                        app_stage.setFullScreenExitHint("Do not Press 'ESC' Key");
                         app_stage.setFullScreen(true);
                         app_stage.setForceIntegerRenderScale(true);
                         app_stage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -164,7 +165,7 @@ public class LoginController implements Initializable {
             System.err.println(ex.getErrorCode());
         }
     }
-
+    
     public static String getMD5(String input) {
         String generatedPassword = null;
         try {
